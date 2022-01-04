@@ -109,5 +109,6 @@ void	ft_lstaddback(t_list **alst, t_list *new);
 void	*ft_calloc(size_t count, size_t size);
 int		ft_lstsize(t_list *begin_list);
 t_list	*ft_lstlast(t_list *begin_list);
+void	*ft_realloc(void *ptr, size_t size);
 
 #endif
