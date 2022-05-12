@@ -111,5 +111,8 @@ int		ft_lstsize(t_list *begin_list);
 t_list	*ft_lstlast(t_list *begin_list);
 void	*ft_realloc(void *ptr, size_t size);
 char	*ft_itoa_base(int value, int base);
+char	*ft_litoa_base(long int value, int base);
+char	*ft_llitoa_base(long long int value, int base);
+char	*ft_ullitoa_base(unsigned long long value, int base);
 
 #endif
