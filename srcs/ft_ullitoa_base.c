@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_llitoa_base.c                                   :+:      :+:    :+:   */
+/*   ft_ullitoa_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 14:09:23 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/05/12 15:19:16 by mbarutel         ###   ########.fr       */
+/*   Created: 2022/05/12 15:16:54 by mbarutel          #+#    #+#             */
+/*   Updated: 2022/05/12 15:30:05 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
+#include <stdio.h>
 
 /*
 **	ft_char_val:
@@ -48,21 +49,14 @@ static int	ft_deci_len(unsigned long long val, int base)
 **	ft_itoa_base:
 **	: Takes in a value and converts it to string based on base.
 */
-char	*ft_llitoa_base(long long value, int base)
+char	*ft_ullitoa_base(unsigned long long value, int base)
 {
 	int					len;
 	unsigned long long	tmp;
 	char				*ret;
 
-	len = 0;
-	if (value < 0 && base == 10)
-	{
-		tmp = value * -1;
-		len++;
-	}
-	else
-		tmp = (unsigned long long)value;
-	len += ft_deci_len(tmp, base);
+	tmp = value;
+	len = ft_deci_len(tmp, base);
 	ret = (char *)malloc(len + 1);
 	if (!ret)
 		return (NULL);

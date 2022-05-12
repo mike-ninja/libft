@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_litoa.base.c                                    :+:      :+:    :+:   */
+/*   ft_litoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 13:47:32 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/05/12 14:10:23 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:19:06 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **	ft_char_val:
 **	: Fetches the character value from the int
 */
-static char	ft_char_val(unsigned long int val)
+static char	ft_char_val(unsigned long val)
 {
 	char	ret;
 
@@ -31,7 +31,7 @@ static char	ft_char_val(unsigned long int val)
 **	ft_deci_len:
 **	: Calculates the amount of digits based on the base. Kind of like ft_strlen
 */
-static int	ft_deci_len(unsigned long int val, int base)
+static int	ft_deci_len(unsigned long val, int base)
 {
 	int	len;
 
@@ -48,11 +48,11 @@ static int	ft_deci_len(unsigned long int val, int base)
 **	ft_itoa_base:
 **	: Takes in a value and converts it to string based on base.
 */
-char	*ft_litoa_base(long int value, int base)
+char	*ft_litoa_base(long value, int base)
 {
-	int					len;
-	unsigned long int	tmp;
-	char				*ret;
+	int				len;
+	unsigned long	tmp;
+	char			*ret;
 
 	len = 0;
 	if (value < 0 && base == 10)
@@ -61,7 +61,7 @@ char	*ft_litoa_base(long int value, int base)
 		len++;
 	}
 	else
-		tmp = (unsigned long int)value;
+		tmp = (unsigned long)value;
 	len += ft_deci_len(tmp, base);
 	ret = (char *)malloc(len + 1);
 	if (!ret)
