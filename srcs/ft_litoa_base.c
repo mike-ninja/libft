@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 13:47:32 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/05/12 15:19:06 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/05/16 11:35:57 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ static int	ft_deci_len(unsigned long val, int base)
 	int	len;
 
 	len = 0;
+	if (value == 0)
+		len++;
+	if (val < 0 && base == 10)
+		len++;
 	while (val != 0)
 	{
 		len++;
@@ -56,10 +60,7 @@ char	*ft_litoa_base(long value, int base)
 
 	len = 0;
 	if (value < 0 && base == 10)
-	{
 		tmp = value * -1;
-		len++;
-	}
 	else
 		tmp = (unsigned long)value;
 	len += ft_deci_len(tmp, base);
@@ -72,6 +73,8 @@ char	*ft_litoa_base(long value, int base)
 		ret[--len] = ft_char_val(tmp % base);
 		tmp /= base;
 	}
+	if (value == 0)
+		ret[--len] = '0';
 	if (value < 0 && base == 10)
 		ret[--len] = '-';
 	return (ret);

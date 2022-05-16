@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 12:32:26 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/05/12 13:45:35 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/05/16 11:34:35 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
+#include <stdio.h>
 
 /*
 **	ft_char_val:
@@ -36,6 +37,10 @@ static int	ft_deci_len(unsigned int val, int base)
 	int	len;
 
 	len = 0;
+	if (val == 0)
+		len++;
+	if (val < 0 && base == 10)
+		len++;
 	while (val != 0)
 	{
 		len++;
@@ -56,10 +61,7 @@ char	*ft_itoa_base(int value, int base)
 
 	len = 0;
 	if (value < 0 && base == 10)
-	{
 		tmp = value * -1;
-		len++;
-	}
 	else
 		tmp = (unsigned int)value;
 	len += ft_deci_len(tmp, base);
@@ -67,6 +69,8 @@ char	*ft_itoa_base(int value, int base)
 	if (!ret)
 		return (NULL);
 	ret[len] = '\0';
+	if (value == 0)
+		ret[--len] = '0';
 	while (tmp)
 	{
 		ret[--len] = ft_char_val(tmp % base);

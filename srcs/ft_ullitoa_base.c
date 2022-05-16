@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 15:16:54 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/05/12 15:30:05 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/05/16 11:35:25 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static int	ft_deci_len(unsigned long long val, int base)
 	int	len;
 
 	len = 0;
+	if (val == 0)
+		len++;
 	while (val != 0)
 	{
 		len++;
@@ -66,6 +68,8 @@ char	*ft_ullitoa_base(unsigned long long value, int base)
 		ret[--len] = ft_char_val(tmp % base);
 		tmp /= base;
 	}
+	if (value == 0)
+		ret[--len] = '0';
 	if (value < 0 && base == 10)
 		ret[--len] = '-';
 	return (ret);
