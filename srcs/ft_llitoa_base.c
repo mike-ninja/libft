@@ -31,7 +31,7 @@ static char	ft_char_val(unsigned long long val)
 **	ft_deci_len:
 **	: Calculates the amount of digits based on the base. Kind of like ft_strlen
 */
-static int	ft_deci_len(unsigned long long val, int base)
+static int	ft_deci_len(signed long long val, int base)
 {
 	int	len;
 
@@ -63,7 +63,7 @@ char	*ft_llitoa_base(long long value, int base)
 		tmp = value * -1;
 	else
 		tmp = (unsigned long long)value;
-	len += ft_deci_len(tmp, base);
+	len += ft_deci_len((signed long long)tmp, base);
 	ret = (char *)malloc(len + 1);
 	if (!ret)
 		return (NULL);

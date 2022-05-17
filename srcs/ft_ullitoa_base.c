@@ -70,7 +70,5 @@ char	*ft_ullitoa_base(unsigned long long value, int base)
 	}
 	if (value == 0)
 		ret[--len] = '0';
-	if (value < 0 && base == 10)
-		ret[--len] = '-';
 	return (ret);
 }

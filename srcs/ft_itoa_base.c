@@ -39,8 +39,6 @@ static int	ft_deci_len(unsigned int val, int base)
 	len = 0;
 	if (val == 0)
 		len++;
-	if (val < 0 && base == 10)
-		len++;
 	while (val != 0)
 	{
 		len++;
@@ -48,6 +46,23 @@ static int	ft_deci_len(unsigned int val, int base)
 	}
 	return (len);
 }
+
+static void	catch_negative(int *len, int val, int base, char *ret)
+{
+	if (!ret)
+	{
+		if (val < 0 && base == 10)
+			len++;
+	}
+	else
+	{
+		if (val < 0 && base == 10)
+		{
+			len--;
+			ret[*len] = '-';
+		}
+	}
+}		
 
 /*
 **	ft_itoa_base:
@@ -60,12 +75,14 @@ char	*ft_itoa_base(int value, int base)
 	char			*ret;
 
 	len = 0;
+	ret = NULL;
 	if (value < 0 && base == 10)
 		tmp = value * -1;
 	else
 		tmp = (unsigned int)value;
 	len += ft_deci_len(tmp, base);
 	ret = (char *)malloc(len + 1);
+	catch_negative(&len, value, base, ret);
 	if (!ret)
 		return (NULL);
 	ret[len] = '\0';
@@ -76,7 +93,6 @@ char	*ft_itoa_base(int value, int base)
 		ret[--len] = ft_char_val(tmp % base);
 		tmp /= base;
 	}
-	if (value < 0 && base == 10)
-		ret[--len] = '-';
+	catch_negative(&len, value, base, ret);
 	return (ret);
 }

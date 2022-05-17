@@ -36,9 +36,7 @@ static int	ft_deci_len(unsigned long val, int base)
 	int	len;
 
 	len = 0;
-	if (value == 0)
-		len++;
-	if (val < 0 && base == 10)
+	if (val == 0)
 		len++;
 	while (val != 0)
 	{
@@ -46,6 +44,28 @@ static int	ft_deci_len(unsigned long val, int base)
 		val /= base;
 	}
 	return (len);
+}
+
+static void	catch_negative(int *len, long val, int base, char *ret)
+{
+	if (!ret)
+	{
+		if (val < 0 && base == 10)
+			len++;
+	}
+	else
+	{
+		if (val < 0 && base == 10)
+		{
+			len--;
+			ret[*len] = '-';
+		}
+		if (val == 0)
+		{
+			len--;
+			ret[*len] = '0';
+		}
+	}
 }
 
 /*
@@ -59,10 +79,12 @@ char	*ft_litoa_base(long value, int base)
 	char			*ret;
 
 	len = 0;
+	ret = NULL;
 	if (value < 0 && base == 10)
 		tmp = value * -1;
 	else
 		tmp = (unsigned long)value;
+	catch_negative(&len, value, base, ret);
 	len += ft_deci_len(tmp, base);
 	ret = (char *)malloc(len + 1);
 	if (!ret)
@@ -73,9 +95,6 @@ char	*ft_litoa_base(long value, int base)
 		ret[--len] = ft_char_val(tmp % base);
 		tmp /= base;
 	}
-	if (value == 0)
-		ret[--len] = '0';
-	if (value < 0 && base == 10)
-		ret[--len] = '-';
+	catch_negative(&len, value, base, ret);
 	return (ret);
 }
