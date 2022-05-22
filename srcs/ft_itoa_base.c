@@ -50,8 +50,10 @@ static int	ft_deci_len(unsigned int val, int base)
 static void	catch_negative(int *len, int val, int base, char *ret)
 {
 	if (!ret)
+	{
 		if (val < 0 && base == 10)
 			*len = *len + 1;
+	}
 	else
 		if (val < 0 && base == 10)
 			ret[0] = '-';
