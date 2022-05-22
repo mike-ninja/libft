@@ -91,7 +91,7 @@ OBJS = $(_SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(SRCS)
 	@$(GERR) $(SRCS)
 	@ar rc $(NAME) $(OBJS)
 	@echo 'libft.a complete'

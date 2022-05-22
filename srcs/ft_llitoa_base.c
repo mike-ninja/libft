@@ -48,6 +48,20 @@ static int	ft_deci_len(signed long long val, int base)
 	return (len);
 }
 
+static void	catch_negative(int *len, long long val, int base, char *ret)
+{
+	if (!ret)
+		if (val < 0 && base == 10)
+			*len = *len + 1;
+	else
+	{
+		if (val < 0 && base == 10)
+			ret[0] = '-';
+		if (val == 0)
+			ret[0] = '0';
+	}
+}
+
 /*
 **	ft_itoa_base:
 **	: Takes in a value and converts it to string based on base.
@@ -59,11 +73,13 @@ char	*ft_llitoa_base(long long value, int base)
 	char				*ret;
 
 	len = 0;
+	ret = NULL;
 	if (value < 0 && base == 10)
 		tmp = value * -1;
 	else
 		tmp = (unsigned long long)value;
 	len += ft_deci_len((signed long long)tmp, base);
+	catch_negative(&len, value, base, ret);
 	ret = (char *)malloc(len + 1);
 	if (!ret)
 		return (NULL);
@@ -73,9 +89,6 @@ char	*ft_llitoa_base(long long value, int base)
 		ret[--len] = ft_char_val(tmp % base);
 		tmp /= base;
 	}
-	if (value == 0)
-		ret[--len] = '0';
-	if (value < 0 && base == 10)
-		ret[--len] = '-';
+	catch_negative(&len, value, base, ret);
 	return (ret);
 }

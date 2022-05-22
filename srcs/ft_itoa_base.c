@@ -50,18 +50,11 @@ static int	ft_deci_len(unsigned int val, int base)
 static void	catch_negative(int *len, int val, int base, char *ret)
 {
 	if (!ret)
-	{
 		if (val < 0 && base == 10)
-			len++;
-	}
+			*len = *len + 1;
 	else
-	{
 		if (val < 0 && base == 10)
-		{
-			len--;
-			ret[*len] = '-';
-		}
-	}
+			ret[0] = '-';
 }		
 
 /*
@@ -81,8 +74,8 @@ char	*ft_itoa_base(int value, int base)
 	else
 		tmp = (unsigned int)value;
 	len += ft_deci_len(tmp, base);
-	ret = (char *)malloc(len + 1);
 	catch_negative(&len, value, base, ret);
+	ret = (char *)malloc(len + 1);
 	if (!ret)
 		return (NULL);
 	ret[len] = '\0';
