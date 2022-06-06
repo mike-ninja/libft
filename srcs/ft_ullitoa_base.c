@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ullitoa_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 15:16:54 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/06/04 21:39:46 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/06/06 12:50:27 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
-#include <stdio.h>
 
 /*
 **	ft_char_val:

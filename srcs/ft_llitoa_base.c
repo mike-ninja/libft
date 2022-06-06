@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_llitoa_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:09:23 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/06/05 15:31:22 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/06/06 12:50:13 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
-#include <stdio.h>
 
 /*
 **	ft_char_val:
@@ -32,7 +31,7 @@ static char	ft_char_val(unsigned long long val)
 **	ft_deci_len:
 **	: Calculates the amount of digits based on the base. Kind of like ft_strlen
 */
-static int	ft_deci_len(long long val, int base)
+static int	ft_deci_len(unsigned long long val, int base)
 {
 	int	len;
 
@@ -83,7 +82,7 @@ char	*ft_llitoa_base(long long value, int base)
 		tmp = value * -1;
 	else
 		tmp = (unsigned long long)value;
-	len += ft_deci_len((long long)tmp, base);
+	len += ft_deci_len(tmp, base);
 	catch_negative(&len, value, base, ret);
 	ret = (char *)malloc(len + 1);
 	if (!ret)
