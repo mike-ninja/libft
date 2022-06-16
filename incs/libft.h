@@ -112,6 +112,7 @@ t_list	*ft_lstlast(t_list *begin_list);
 void	*ft_realloc(void *ptr, size_t size);
 char	*ft_itoa_base(int value, int base);
 char	*ft_ftoa(double nbr, size_t precision);
+char	*ft_lftoa(long double nbr, size_t precision);
 char	*ft_ltoa_base(long int value, int base);
 char	*ft_lltoa_base(long long int value, int base);
 char	*ft_ulltoa_base(unsigned long long value, int base);
