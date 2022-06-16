@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_llitoa_base.c                                   :+:      :+:    :+:   */
+/*   ft_ltoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 14:09:23 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/06/06 12:50:13 by mbarutel         ###   ########.fr       */
+/*   Created: 2022/05/12 13:47:32 by mbarutel          #+#    #+#             */
+/*   Updated: 2022/06/08 12:33:02 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **	ft_char_val:
 **	: Fetches the character value from the int
 */
-static char	ft_char_val(unsigned long long val)
+static char	ft_char_val(unsigned long val)
 {
 	char	ret;
 
@@ -31,14 +31,12 @@ static char	ft_char_val(unsigned long long val)
 **	ft_deci_len:
 **	: Calculates the amount of digits based on the base. Kind of like ft_strlen
 */
-static int	ft_deci_len(unsigned long long val, int base)
+static int	ft_deci_len(unsigned long val, int base)
 {
 	int	len;
 
 	len = 0;
 	if (val == 0)
-		len++;
-	if (val < 0 && base == 10)
 		len++;
 	while (val != 0)
 	{
@@ -48,7 +46,7 @@ static int	ft_deci_len(unsigned long long val, int base)
 	return (len);
 }
 
-static void	catch_negative(int *len, long long val, int base, char *ret)
+static void	catch_negative(int *len, long val, int base, char *ret)
 {
 	if (!ret)
 	{
@@ -68,22 +66,20 @@ static void	catch_negative(int *len, long long val, int base, char *ret)
 **	ft_itoa_base:
 **	: Takes in a value and converts it to string based on base.
 */
-char	*ft_llitoa_base(long long value, int base)
+char	*ft_ltoa_base(long value, int base)
 {
-	int					len;
-	unsigned long long	tmp;
-	char				*ret;
+	int				len;
+	unsigned long	tmp;
+	char			*ret;
 
 	len = 0;
 	ret = NULL;
-	if (value < -9223372036854775807)
-		return (ft_strdup("-9223372036854775808"));
 	if (value < 0 && base == 10)
 		tmp = value * -1;
 	else
-		tmp = (unsigned long long)value;
-	len += ft_deci_len(tmp, base);
+		tmp = (unsigned long)value;
 	catch_negative(&len, value, base, ret);
+	len += ft_deci_len(tmp, base);
 	ret = (char *)malloc(len + 1);
 	if (!ret)
 		return (NULL);

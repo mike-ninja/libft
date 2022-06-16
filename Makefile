@@ -79,9 +79,11 @@ _SRCS += ft_strlcpy.c
 _SRCS += ft_lstlast.c
 _SRCS += ft_lstsize.c
 _SRCS += ft_itoa_base.c
-_SRCS += ft_litoa_base.c
-_SRCS += ft_llitoa_base.c
-_SRCS += ft_ullitoa_base.c
+_SRCS += ft_ltoa_base.c
+_SRCS += ft_lltoa_base.c
+_SRCS += ft_ulltoa_base.c
+_SRCS += ft_ftoa.c
+_SRCS += ft_lftoa.c
 
 SDIR = srcs
 
