@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:44:54 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/06/16 08:24:55 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/06/18 09:45:10 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static char	*remainder(char *nb, double nbr, size_t precision)
 	ret = ft_strjoin(nb, ret);
 	free(tmp);
 	free(nb);
-	banker_round(nbr * 10, ret);
+	banker_round(nbr, ret);
 	return (ret);
 }
 
