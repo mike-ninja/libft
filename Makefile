@@ -116,7 +116,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
-	@echo 'libft.a complete'
+	@echo "$(GREEN)LIBFT Complete$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
 	@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
@@ -127,10 +127,10 @@ $(OBJF):
 	
 clean:
 	@rm -f $(OBJ)
-	@echo 'obj files cleaned'
+	@echo "$(RED)OBJ Files Cleaned$(DEF_COLOR)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo 'libft.a & obj files cleaned'
+	@echo "$(RED)LIBFT Cleaned$(DEF_COLOR)"
 	
 re: fclean all
