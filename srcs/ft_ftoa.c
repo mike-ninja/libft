@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ftoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:44:54 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/06/18 09:45:10 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/07/04 13:22:42 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	banker_round(double nbr, char *dl_str)
 	}
 }
 
-static char	*remainder(char *nb, double nbr, size_t precision)
+static char	*remainder(double nbr, size_t precision)
 {
 	char	*ret;
 	char	*tmp;
@@ -48,7 +48,7 @@ static char	*remainder(char *nb, double nbr, size_t precision)
 
 	tmp = NULL;
 	ret = (char *)malloc(precision + 1);
-	if (!ret)
+	if (!ret || precision == 0)
 		return (NULL);
 	index = 0;
 	ret[precision] = '\0';
@@ -59,31 +59,37 @@ static char	*remainder(char *nb, double nbr, size_t precision)
 		ret[index++] = base + '0';
 	}
 	tmp = ret;
-	ret = ft_strjoin(nb, ret);
+	ret = ft_strjoin(".", ret);
 	free(tmp);
-	free(nb);
+	// free(nb);
 	banker_round(nbr, ret);
 	return (ret);
 }
 
-static char	*joiner(char *str, size_t precision, long base)
+static char	*joiner(char *str, long base, double nbr)
 {
 	char	*tmp;
 
 	if (!str)
-		str = ft_ltoa_base(base, 10);
+	{
+		if (((long)(nbr * 10)) % 10 >= 5 && base % 2 != 0)
+			base++;
+		return(ft_ltoa_base(base, 10));	
+	}
 	else
 	{
 		tmp = str;
-		str = ft_strjoin(str, ft_ltoa_base(base, 10));
+		// if (((long)(nbr * 10)) % 10 == 9)
+		// 	base++;
+		str = ft_strjoin(ft_ltoa_base(base, 10), str);
 		free(tmp);
 	}
-	if (precision)
-	{
-		tmp = str;
-		str = ft_strjoin(tmp, ".");
-		free(tmp);
-	}
+	// if (precision)
+	// {
+	// 	tmp = str;
+	// 	str = ft_strjoin(tmp, ".");
+	// 	free(tmp);
+	// }
 	return (str);
 }
 
@@ -93,14 +99,14 @@ char	*ft_ftoa(double nbr, size_t precision)
 	long	base;
 
 	ret = NULL;
-	if (1 / nbr < 0)
-	{
-		ret = ft_strdup("-");
-		nbr *= -1;
-	}
+	// if (1 / nbr < 0)
+	// {
+	// 	ret = ft_strdup("-");
+	// 	nbr *= -1;
+	// }
 	base = (long)nbr;
-	ret = joiner(ret, precision, base);
 	nbr -= (double)base;
-	ret = remainder(ret, nbr, precision);
+	ret = remainder(nbr, precision);
+	ret = joiner(ret, base, nbr);
 	return (ret);
 }
