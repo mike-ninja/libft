@@ -3,16 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lftoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 08:37:40 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/06/16 08:39:08 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:20:11 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
+#include <stdio.h>
 
-static void	banker_round(long double nbr, char *dl_str)
+static char	*joiner(char *sign, char *str, long *base)
+{
+	char	*tmp;
+	char	*base_str;
+
+	tmp = str;
+	base_str = ft_ltoa_base(base[0], 10);
+	str = ft_strjoin(base_str, str);
+	free(tmp);
+	free(base_str);
+	if (sign)
+	{
+		tmp = str;
+		str = ft_strjoin(sign, str);
+		free(tmp);
+		free(sign);
+	}
+	return (str);
+}
+
+static void	banker_round(long double nbr, char *dl_str, long *base, size_t precision)
 {
 	int	len;
 
@@ -25,21 +46,36 @@ static void	banker_round(long double nbr, char *dl_str)
 			{
 				if (dl_str[len] == '9')
 					dl_str[len--] = '0';
-				else if (dl_str[len] == '.')
-					len--;
 				else
 				{
-					dl_str[len]++;
-					break ;
+					if (dl_str[len] == '.')
+					{
+						// printf("This happens\n");
+						// if ((base[0] % 2) != 0)
+							base[0]++;
+					}
+					else
+					{
+						// if (((dl_str[len] - '0') % 2) != 0) // This is different than normal ftoa
+						dl_str[len]++;
+					}
+					break;
 				}
 			}
 		}
 		else
-			dl_str[len]++;
+		{
+			// if (((dl_str[len] - '0') % 2) != 0)
+				dl_str[len]++;
+		}
+			
 	}
+	if (precision == 0 && (((long)(nbr * 10)) % 10 >= 5))
+		if ((base[0] % 2) != 0)
+			base[0]++;
 }
 
-static char	*remainder(char *nb, long double nbr, size_t precision)
+static char	*remainder(long double nbr, size_t precision, long *base_l)
 {
 	char	*ret;
 	char	*tmp;
@@ -47,6 +83,13 @@ static char	*remainder(char *nb, long double nbr, size_t precision)
 	int		index;
 
 	tmp = NULL;
+	if (precision == 0)
+	{
+		if (((long)(nbr * 10)) % 10 >= 5)
+			if ((base_l[0] % 2) != 0)
+				base_l[0]++;
+		return (ft_strdup(""));	
+	}
 	ret = (char *)malloc(precision + 1);
 	if (!ret)
 		return (NULL);
@@ -55,52 +98,37 @@ static char	*remainder(char *nb, long double nbr, size_t precision)
 	while (precision--)
 	{
 		nbr *= 10;
-		base = ((long)nbr) % 10;
-		ret[index++] = base + '0';
+		base = ((long)nbr);
+		ret[index++] = (base % 10) + '0';
+		nbr -= (long double)base;
 	}
 	tmp = ret;
-	ret = ft_strjoin(nb, ret);
+	ret = ft_strjoin(".", ret);
 	free(tmp);
-	free(nb);
-	banker_round(nbr * 10, ret);
+	banker_round(nbr, ret, base_l, precision);
 	return (ret);
-}
-
-static char	*joiner(char *str, size_t precision, long base)
-{
-	char	*tmp;
-
-	if (!str)
-		str = ft_ltoa_base(base, 10);
-	else
-	{
-		tmp = str;
-		str = ft_strjoin(str, ft_ltoa_base(base, 10));
-		free(tmp);
-	}
-	if (precision)
-	{
-		tmp = str;
-		str = ft_strjoin(tmp, ".");
-		free(tmp);
-	}
-	return (str);
 }
 
 char	*ft_lftoa(long double nbr, size_t precision)
 {
 	char	*ret;
-	long	base;
+	char	*sign;
+	long	*base;
 
 	ret = NULL;
+	sign = NULL;
+	base = (long *)malloc(sizeof(long));
+	if (!base)
+		return (NULL);
 	if (1 / nbr < 0)
 	{
-		ret = ft_strdup("-");
+		sign = ft_strdup("-");
 		nbr *= -1;
 	}
-	base = (long)nbr;
-	ret = joiner(ret, precision, base);
-	nbr -= (long double)base;
-	ret = remainder(ret, nbr, precision);
+	*base = (long)nbr;
+	nbr -= (long double)base[0];
+	ret = remainder(nbr, precision, base);
+	ret = joiner(sign, ret, base);
+	free(base);
 	return (ret);
 }
