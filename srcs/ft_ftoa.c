@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ftoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:44:54 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/07/06 11:16:23 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:02:02 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
-#include <stdio.h>
 
 static char	*joiner(char *sign, char *str, long *base)
 {
@@ -30,10 +29,11 @@ static char	*joiner(char *sign, char *str, long *base)
 		free(tmp);
 		free(sign);
 	}
+	free(base);
 	return (str);
 }
 
-static void	banker_round(double nbr, char *dl_str, long *base, size_t precision)
+static void	banker_round(double nbr, char *dl_str, long *base)
 {
 	int	len;
 
@@ -51,20 +51,24 @@ static void	banker_round(double nbr, char *dl_str, long *base, size_t precision)
 					if (dl_str[len] == '.')
 							base[0]++;
 					else
-					{
-						if (((dl_str[len] - '0') % 2) != 0)
 							dl_str[len]++;
-					}
-					break;
+					break ;
 				}
 			}
 		}
 		else
 				dl_str[len]++;
 	}
-	if (precision == 0 && (((long)(nbr * 10)) % 10 >= 5))
-		if ((base[0] % 2) != 0)
-			base[0]++;
+}
+
+static char	*precision_zero(double nbr, long *base_l)
+{
+	if (nbr > 0.5f)
+		base_l[0]++;
+	else if (nbr == 0.5f)
+		if ((base_l[0] % 2) != 0)
+			base_l[0]++;
+	return (ft_strdup(""));
 }
 
 static char	*remainder(double nbr, size_t precision, long *base_l)
@@ -76,17 +80,7 @@ static char	*remainder(double nbr, size_t precision, long *base_l)
 
 	tmp = NULL;
 	if (precision == 0)
-	{
-
-		if (nbr > 0.5f)
-				base_l[0]++;
-		else if (nbr == 0.5f)
-		{
-			if ((base_l[0] % 2) != 0)
-				base_l[0]++;
-		}
-		return (ft_strdup(""));	
-	}
+		return (precision_zero(nbr, base_l));
 	ret = (char *)malloc(precision + 1);
 	if (!ret)
 		return (NULL);
@@ -102,7 +96,7 @@ static char	*remainder(double nbr, size_t precision, long *base_l)
 	tmp = ret;
 	ret = ft_strjoin(".", ret);
 	free(tmp);
-	banker_round(nbr, ret, base_l, precision);
+	banker_round(nbr, ret, base_l);
 	return (ret);
 }
 
@@ -132,6 +126,5 @@ char	*ft_ftoa(double nbr, size_t precision)
 	nbr -= (double)base[0];
 	ret = remainder(nbr, precision, base);
 	ret = joiner(sign, ret, base);
-	free(base);
 	return (ret);
 }

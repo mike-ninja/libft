@@ -15,7 +15,7 @@
 NAME 		= libft.a
 INCLUDE		= incs
 SRC_DIR		= srcs/
-OBJ_DIR		= objs/
+# OBJ_DIR		= objs/
 CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra -I
 AR			= ar rcs
@@ -106,24 +106,16 @@ SRCS_FILES += ft_ftoa
 SRCS_FILES += ft_lftoa
 
 SRC 		= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRCS_FILES)))
-OBJ 		= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRCS_FILES)))
-
-OBJF 		= .cache_exists
+OBJ 		= $(addsuffix .o, $(SRCS_FILES))
 
 #####
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(SRC)
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $(SRC)
 	@ar rcs $(NAME) $(OBJ)
 	@echo "$(GREEN)LIBFT Complete$(DEF_COLOR)"
-
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
-	@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
-	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-
-$(OBJF):
-	@mkdir -p $(OBJ_DIR)
 	
 clean:
 	@rm -f $(OBJ)
