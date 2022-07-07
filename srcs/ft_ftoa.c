@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ftoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:44:54 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/07/05 12:21:49 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/07/06 11:16:23 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,7 @@ static void	banker_round(double nbr, char *dl_str, long *base, size_t precision)
 				else
 				{
 					if (dl_str[len] == '.')
-					{
-						// printf("This happens\n");
-						// if ((base[0] % 2) != 0)
 							base[0]++;
-					}
 					else
 					{
 						if (((dl_str[len] - '0') % 2) != 0)
@@ -64,11 +60,7 @@ static void	banker_round(double nbr, char *dl_str, long *base, size_t precision)
 			}
 		}
 		else
-		{
-			// if (((dl_str[len] - '0') % 2) != 0)
 				dl_str[len]++;
-		}
-			
 	}
 	if (precision == 0 && (((long)(nbr * 10)) % 10 >= 5))
 		if ((base[0] % 2) != 0)
@@ -85,12 +77,16 @@ static char	*remainder(double nbr, size_t precision, long *base_l)
 	tmp = NULL;
 	if (precision == 0)
 	{
-		if (((long)(nbr * 10)) % 10 >= 5)
+
+		if (nbr > 0.5f)
+				base_l[0]++;
+		else if (nbr == 0.5f)
+		{
 			if ((base_l[0] % 2) != 0)
 				base_l[0]++;
+		}
 		return (ft_strdup(""));	
 	}
-		
 	ret = (char *)malloc(precision + 1);
 	if (!ret)
 		return (NULL);
@@ -118,6 +114,12 @@ char	*ft_ftoa(double nbr, size_t precision)
 
 	ret = NULL;
 	sign = NULL;
+	if (nbr == 1.0 / 0.0)
+		return (ft_strdup("inf"));
+	if (nbr == -1.0 / 0.0)
+		return (ft_strdup("-inf"));
+	if (nbr != nbr)
+		return (ft_strdup("nan"));
 	base = (long *)malloc(sizeof(long));
 	if (!base)
 		return (NULL);

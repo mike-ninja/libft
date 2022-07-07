@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lftoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 08:37:40 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/07/05 12:20:11 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/07/06 09:47:53 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,12 @@ char	*ft_lftoa(long double nbr, size_t precision)
 
 	ret = NULL;
 	sign = NULL;
+	if (nbr == 1.0 / 0.0)
+		return (ft_strdup("inf"));
+	if (nbr == -1.0 / 0.0)
+		return (ft_strdup("-inf"));
+	if (nbr != nbr)
+		return (ft_strdup("nan"));
 	base = (long *)malloc(sizeof(long));
 	if (!base)
 		return (NULL);
