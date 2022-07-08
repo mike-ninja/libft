@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lltoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:09:23 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/06/16 08:43:23 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/07/08 11:28:16 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*ft_lltoa_base(long long value, int base)
 
 	len = 0;
 	ret = NULL;
-	if (value < -9223372036854775807)
+	if (value < -9223372036854775807 && base == 10)
 		return (ft_strdup("-9223372036854775808"));
 	if (value < 0 && base == 10)
 		tmp = value * -1;

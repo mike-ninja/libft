@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:44:54 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/07/07 14:02:02 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/07/08 12:40:37 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	banker_round(double nbr, char *dl_str, long *base)
 			}
 		}
 		else
-				dl_str[len]++;
+			dl_str[len]++;
 	}
 }
 
