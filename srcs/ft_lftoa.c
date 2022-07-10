@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lftoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 08:37:40 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/07/07 13:59:41 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/07/09 14:10:13 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,9 @@ static char	*joiner(char *sign, char *str, long *base)
 	return (str);
 }
 
-static void	banker_round(long double nbr, char *dl_str, long *base)
+static void	banker_round(long double nbr, char *dl_str, long *base, size_t len)
 {
-	int	len;
-
-	len = ft_strlen(dl_str) - 1;
-	if (((long)(nbr * 10)) % 10 >= 5)
+	if (nbr > 0.5f)
 	{
 		if (dl_str[len] == '9')
 		{
@@ -59,6 +56,8 @@ static void	banker_round(long double nbr, char *dl_str, long *base)
 		else
 			dl_str[len]++;
 	}
+	if (nbr == 0.5f && dl_str[len] == '0')
+		dl_str[len]++;
 }
 
 static char	*precision_zero(long double nbr, long *base_l)
@@ -96,7 +95,7 @@ static char	*remainder(long double nbr, size_t precision, long *base_l)
 	tmp = ret;
 	ret = ft_strjoin(".", ret);
 	free(tmp);
-	banker_round(nbr, ret, base_l);
+	banker_round(nbr, ret, base_l, (ft_strlen(ret) - 1));
 	return (ret);
 }
 

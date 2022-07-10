@@ -15,7 +15,6 @@
 NAME 		= libft.a
 INCLUDE		= incs
 SRC_DIR		= srcs/
-# OBJ_DIR		= objs/
 CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra -I
 AR			= ar rcs
@@ -104,6 +103,8 @@ SRCS_FILES += ft_lltoa_base
 SRCS_FILES += ft_ulltoa_base
 SRCS_FILES += ft_ftoa
 SRCS_FILES += ft_lftoa
+SRCS_FILES += ft_strjoin_head
+SRCS_FILES += ft_strjoin_tail
 
 SRC 		= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJ 		= $(addsuffix .o, $(SRCS_FILES))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ftoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:44:54 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/07/08 15:52:51 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/07/09 14:53:46 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,9 @@ static char	*joiner(char *sign, char *str, long *base)
 	return (str);
 }
 
-static void	banker_round(double nbr, char *dl_str, long *base)
+static void	banker_round(long double nbr, char *dl_str, long *base, size_t len)
 {
-	int	len;
-
-	len = ft_strlen(dl_str) - 1;
-	if (((long)(nbr * 10)) % 10 >= 5)
+	if (nbr > 0.5f)
 	{
 		if (dl_str[len] == '9')
 		{
@@ -51,7 +48,7 @@ static void	banker_round(double nbr, char *dl_str, long *base)
 					if (dl_str[len] == '.')
 							base[0]++;
 					else
-							dl_str[len]++;
+						dl_str[len]++;
 					break ;
 				}
 			}
@@ -59,6 +56,8 @@ static void	banker_round(double nbr, char *dl_str, long *base)
 		else
 			dl_str[len]++;
 	}
+	if (nbr == 0.5f && dl_str[len] == '0')
+		dl_str[len]++;
 }
 
 static char	*precision_zero(double nbr, long *base_l)
@@ -73,12 +72,12 @@ static char	*precision_zero(double nbr, long *base_l)
 
 static char	*remainder(double nbr, size_t precision, long *base_l)
 {
-	char	*ret;
-	char	*tmp;
-	long	base;
-	int		index;
+	char		*ret;
+	long		base;
+	int			index;
+	long double	nbr_tmp;
 
-	tmp = NULL;
+	nbr_tmp = nbr;
 	if (precision == 0)
 		return (precision_zero(nbr, base_l));
 	ret = (char *)malloc(precision + 1);
@@ -88,15 +87,13 @@ static char	*remainder(double nbr, size_t precision, long *base_l)
 	ret[precision] = '\0';
 	while (precision--)
 	{
-		nbr *= 10;
-		base = ((long)nbr);
+		nbr_tmp *= 10;
+		base = ((long)nbr_tmp);
 		ret[index++] = (base % 10) + '0';
-		nbr -= (long double)base;
+		nbr_tmp -= base;
 	}
-	tmp = ret;
-	ret = ft_strjoin(".", ret);
-	free(tmp);
-	banker_round(nbr, ret, base_l);
+	ret = strjoin_tail(".", ret);
+	banker_round(nbr_tmp, ret, base_l, (ft_strlen(ret) - 1));
 	return (ret);
 }
 
