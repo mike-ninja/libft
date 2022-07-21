@@ -105,6 +105,7 @@ SRCS_FILES += ft_ftoa
 SRCS_FILES += ft_lftoa
 SRCS_FILES += ft_strjoin_head
 SRCS_FILES += ft_strjoin_tail
+SRCS_FILES += ft_strsep
 
 SRC 		= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJ 		= $(addsuffix .o, $(SRCS_FILES))
