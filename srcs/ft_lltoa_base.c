@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lltoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:09:23 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/09/01 09:56:13 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/09/01 11:14:50 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,21 @@ static void	catch_negative(int *len, long long val, int base, char *ret)
 	}
 }
 
+static int	if_neg(long long value, unsigned long long *tmp, int base)
+{
+	int	ret;
+
+	ret = 0;
+	if (value < 0 && base == 10)
+	{
+		*tmp = value * -1;
+		ret++;
+	}
+	else
+		*tmp = (unsigned long long)value;
+	return (ret);
+}
+
 /*
 **	ft_itoa_base:
 **	: Takes in a value and converts it to string based on base.
@@ -72,17 +87,10 @@ char	*ft_lltoa_base(long long value, int base)
 	unsigned long long	tmp;
 	char				*ret;
 
-	len = 0;
 	ret = NULL;
 	if (value < -9223372036854775807 && base == 10)
 		return (ft_strdup("-9223372036854775808"));
-	if (value < 0 && base == 10)
-	{
-		tmp = value * -1;
-		len++;
-	}
-	else
-		tmp = (unsigned long long)value;
+	len = if_neg(value, &tmp, base);
 	len += ft_deci_len(tmp, base);
 	catch_negative(&len, value, base, ret);
 	ret = (char *)malloc(len + 1);
