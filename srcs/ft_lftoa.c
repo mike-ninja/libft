@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 08:37:40 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/07/09 14:10:13 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/09/01 10:11:32 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,12 @@ static void	banker_round(long double nbr, char *dl_str, long *base, size_t len)
 	{
 		if (dl_str[len] == '9')
 		{
-			while (len >= 0)
-			{
-				if (dl_str[len] == '9')
-					dl_str[len--] = '0';
-				else
-				{
-					if (dl_str[len] == '.')
-							base[0]++;
-					else
-						dl_str[len]++;
-					break ;
-				}
-			}
+			while (dl_str[len] == '9')
+				dl_str[len--] = '0';
+			if (dl_str[len] == '.')
+				base[0]++;
+			else
+				dl_str[len]++;
 		}
 		else
 			dl_str[len]++;
@@ -70,7 +63,7 @@ static char	*precision_zero(long double nbr, long *base_l)
 	return (ft_strdup(""));
 }
 
-static char	*remainder(long double nbr, size_t precision, long *base_l)
+static char	*remain(long double nbr, size_t precision, long *base_l)
 {
 	char	*ret;
 	char	*tmp;
@@ -123,7 +116,7 @@ char	*ft_lftoa(long double nbr, size_t precision)
 	}
 	*base = (long)nbr;
 	nbr -= (long double)base[0];
-	ret = remainder(nbr, precision, base);
+	ret = remain(nbr, precision, base);
 	ret = joiner(sign, ret, base);
 	return (ret);
 }

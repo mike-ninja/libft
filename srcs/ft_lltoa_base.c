@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lltoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:09:23 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/07/08 11:28:16 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/09/01 09:56:13 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ static int	ft_deci_len(unsigned long long val, int base)
 
 	len = 0;
 	if (val == 0)
-		len++;
-	if (val < 0 && base == 10)
 		len++;
 	while (val != 0)
 	{
@@ -79,7 +77,10 @@ char	*ft_lltoa_base(long long value, int base)
 	if (value < -9223372036854775807 && base == 10)
 		return (ft_strdup("-9223372036854775808"));
 	if (value < 0 && base == 10)
+	{
 		tmp = value * -1;
+		len++;
+	}
 	else
 		tmp = (unsigned long long)value;
 	len += ft_deci_len(tmp, base);
