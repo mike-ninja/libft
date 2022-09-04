@@ -13,11 +13,12 @@
 # Variables
 
 NAME 		= libft.a
+
+INC_DIR		= incs/
+SRC_DIR		= srcs/
+OBJ_DIR		= objs/
 CC			= gcc
 AR			= ar rcs
-SRC_DIR		= srcs/
-OBJ_DIR		= obj/
-INC_DIR		= incs/
 INCLUDE		= -I$(INC_DIR)
 CFLAGS		= -Wall -Werror -Wextra
 
@@ -125,7 +126,7 @@ $(OBJ_DIR):
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@echo "$(RED)Deleted Objects Directory -> $(OBJ_DIR)$(DEF_COLOR)"
+	@echo "$(RED)Deleted Objects Directory -> $(NAME)$(DEF_COLOR)"
 
 fclean: clean
 	@rm -f $(NAME)
