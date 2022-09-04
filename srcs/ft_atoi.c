@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:01:41 by mbarutel          #+#    #+#             */
-/*   Updated: 2021/11/16 14:01:41 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/09/03 21:17:48 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 **	: Takes a string of ascii characters (digits) and converts
 **	them into integers.
 */
+
 
 int	ft_atoi(const char *nbr)
 {

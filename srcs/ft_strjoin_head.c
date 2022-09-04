@@ -6,11 +6,11 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 14:40:55 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/07/09 14:43:07 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/09/04 16:06:42 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+#include "libft.h"
 
 char	*strjoin_head(char *str, char *tail)
 {

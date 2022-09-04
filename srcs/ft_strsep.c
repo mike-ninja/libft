@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsep.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:51:32 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/07/21 13:52:13 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/09/04 16:07:27 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+#include "libft.h"
 
 /*
 **	ft_strsep:

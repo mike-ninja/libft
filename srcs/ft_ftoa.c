@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ftoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:44:54 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/09/01 11:10:15 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/09/04 16:04:36 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+#include "libft.h"
 
 static char	*joiner(char *sign, char *str, long *base)
 {

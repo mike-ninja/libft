@@ -6,11 +6,11 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 08:37:40 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/09/01 10:11:32 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/09/04 16:04:52 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+#include "libft.h"
 
 static char	*joiner(char *sign, char *str, long *base)
 {

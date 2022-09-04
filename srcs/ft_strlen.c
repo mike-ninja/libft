@@ -6,11 +6,12 @@
 /*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 14:09:13 by mbarutel          #+#    #+#             */
-/*   Updated: 2021/11/16 14:09:13 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/09/04 15:18:32 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/libft.h"
+
+#include "libft.h"
 
 /*
 **	ft_strlen:

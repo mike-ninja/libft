@@ -6,125 +6,131 @@
 #    By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/19 14:58:30 by mbarutel          #+#    #+#              #
-#    Updated: 2021/12/13 23:01:35 by mbarutel         ###   ########.fr        #
+#    Updated: 2022/09/04 15:23:58 by mbarutel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Variables
 
 NAME 		= libft.a
-INCLUDE		= incs
-SRC_DIR		= srcs/
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra -I
 AR			= ar rcs
+SRC_DIR		= srcs/
+OBJ_DIR		= obj/
+INC_DIR		= incs/
+INCLUDE		= -I$(INC_DIR)
+CFLAGS		= -Wall -Werror -Wextra
 
 # Colors
 
 DEF_COLOR = \033[0;39m
-GRAY = \033[0;90m
-RED = \033[0;91m
-GREEN = \033[0;92m
-YELLOW = \033[0;93m
-BLUE = \033[0;94m
-MAGENTA = \033[0;95m
-CYAN = \033[0;96m
-WHITE = \033[0;97m
+RED = \033[1;91m
+BLUE = \033[1;94m
+MAGENTA = \033[1;95m
+CYAN = \033[1;96m
 
 # Sources
 
-SRCS_FILES 	= ft_memset 
-SRCS_FILES += ft_bzero
-SRCS_FILES += ft_memcpy
-SRCS_FILES += ft_memccpy
-SRCS_FILES += ft_memmove
-SRCS_FILES += ft_memchr
-SRCS_FILES += ft_memcmp
-SRCS_FILES += ft_strlen
-SRCS_FILES += ft_strdup
-SRCS_FILES += ft_strcpy
-SRCS_FILES += ft_strncpy
-SRCS_FILES += ft_strcat
-SRCS_FILES += ft_strncat
-SRCS_FILES += ft_strlcat
-SRCS_FILES += ft_strchr
-SRCS_FILES += ft_strrchr
-SRCS_FILES += ft_strstr
-SRCS_FILES += ft_strnstr
-SRCS_FILES += ft_strcmp
-SRCS_FILES += ft_strncmp
-SRCS_FILES += ft_atoi
-SRCS_FILES += ft_isalpha
-SRCS_FILES += ft_isdigit
-SRCS_FILES += ft_isalnum
-SRCS_FILES += ft_isascii
-SRCS_FILES += ft_isprint
-SRCS_FILES += ft_toupper
-SRCS_FILES += ft_tolower
-SRCS_FILES += ft_memalloc
-SRCS_FILES += ft_memdel
-SRCS_FILES += ft_strnew
-SRCS_FILES += ft_strdel
-SRCS_FILES += ft_strclr
-SRCS_FILES += ft_striter
-SRCS_FILES += ft_striteri
-SRCS_FILES += ft_strmap
-SRCS_FILES += ft_strmapi
-SRCS_FILES += ft_strequ
-SRCS_FILES += ft_strnequ
-SRCS_FILES += ft_strsub
-SRCS_FILES += ft_strjoin
-SRCS_FILES += ft_strtrim
-SRCS_FILES += ft_strsplit
-SRCS_FILES += ft_itoa
-SRCS_FILES += ft_putchar
-SRCS_FILES += ft_putstr
-SRCS_FILES += ft_putendl
-SRCS_FILES += ft_putnbr
-SRCS_FILES += ft_putchar_fd
-SRCS_FILES += ft_putstr_fd
-SRCS_FILES += ft_putendl_fd
-SRCS_FILES += ft_putnbr_fd
-SRCS_FILES += ft_lstnew
-SRCS_FILES += ft_lstdelone
-SRCS_FILES += ft_lstdel
-SRCS_FILES += ft_lstadd
-SRCS_FILES += ft_lstaddback
-SRCS_FILES += ft_lstiter
-SRCS_FILES += ft_lstmap
-SRCS_FILES += ft_del
-SRCS_FILES += ft_calloc
-SRCS_FILES += ft_strlcpy
-SRCS_FILES += ft_lstlast
-SRCS_FILES += ft_lstsize
-SRCS_FILES += ft_itoa_base
-SRCS_FILES += ft_ltoa_base
-SRCS_FILES += ft_lltoa_base
-SRCS_FILES += ft_ulltoa_base
-SRCS_FILES += ft_ftoa
-SRCS_FILES += ft_lftoa
-SRCS_FILES += ft_strjoin_head
-SRCS_FILES += ft_strjoin_tail
-SRCS_FILES += ft_strsep
+FILES = ft_memset 
+FILES += ft_bzero
+FILES += ft_memcpy
+FILES += ft_memccpy
+FILES += ft_memmove
+FILES += ft_memchr
+FILES += ft_memcmp
+FILES += ft_strlen
+FILES += ft_strdup
+FILES += ft_strcpy
+FILES += ft_strncpy
+FILES += ft_strcat
+FILES += ft_strncat
+FILES += ft_strlcat
+FILES += ft_strchr
+FILES += ft_strrchr
+FILES += ft_strstr
+FILES += ft_strnstr
+FILES += ft_strcmp
+FILES += ft_strncmp
+FILES += ft_atoi
+FILES += ft_isalpha
+FILES += ft_isdigit
+FILES += ft_isalnum
+FILES += ft_isascii
+FILES += ft_isprint
+FILES += ft_toupper
+FILES += ft_tolower
+FILES += ft_memalloc
+FILES += ft_memdel
+FILES += ft_strnew
+FILES += ft_strdel
+FILES += ft_strclr
+FILES += ft_striter
+FILES += ft_striteri
+FILES += ft_strmap
+FILES += ft_strmapi
+FILES += ft_strequ
+FILES += ft_strnequ
+FILES += ft_strsub
+FILES += ft_strjoin
+FILES += ft_strtrim
+FILES += ft_strsplit
+FILES += ft_itoa
+FILES += ft_putchar
+FILES += ft_putstr
+FILES += ft_putendl
+FILES += ft_putnbr
+FILES += ft_putchar_fd
+FILES += ft_putstr_fd
+FILES += ft_putendl_fd
+FILES += ft_putnbr_fd
+FILES += ft_lstnew
+FILES += ft_lstdelone
+FILES += ft_lstdel
+FILES += ft_lstadd
+FILES += ft_lstaddback
+FILES += ft_lstiter
+FILES += ft_lstmap
+FILES += ft_del
+FILES += ft_calloc
+FILES += ft_strlcpy
+FILES += ft_lstlast
+FILES += ft_lstsize
+FILES += ft_itoa_base
+FILES += ft_ltoa_base
+FILES += ft_lltoa_base
+FILES += ft_ulltoa_base
+FILES += ft_ftoa
+FILES += ft_lftoa
+FILES += ft_strjoin_head
+FILES += ft_strjoin_tail
 
-SRC 		= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRCS_FILES)))
-OBJ 		= $(addsuffix .o, $(SRCS_FILES))
+
+SRC 		= $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
+OBJ 		= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
 
 #####
 
 all: $(NAME)
 
-$(NAME): $(SRC)
-	@$(CC) $(CFLAGS) $(INCLUDE) -c $(SRC)
-	@ar rcs $(NAME) $(OBJ)
-	@echo "$(GREEN)LIBFT Complete$(DEF_COLOR)"
-	
+$(NAME): $(OBJ)
+	@ar rcs $@ $^
+	@echo "$(BLUE)Generated Executable -> $@$(DEF_COLOR)"
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@echo "$(CYAN)Generated Object File -> $<$(DEF_COLOR)"
+
+$(OBJ_DIR):
+	@mkdir -p $@
+
 clean:
-	@rm -f $(OBJ)
-	@echo "$(RED)OBJ Files Cleaned$(DEF_COLOR)"
+	@rm -rf $(OBJ_DIR)
+	@echo "$(RED)Deleted Objects Directory -> $(OBJ_DIR)$(DEF_COLOR)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(RED)LIBFT Cleaned$(DEF_COLOR)"
+	@echo "$(MAGENTA)Deleted Library -> $(NAME)$(DEF_COLOR)"
 	
-re: fclean all
+re: fclean $(OBJ_DIR) all
+
+.PHONY: all clean fclean re
