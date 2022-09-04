@@ -16,7 +16,6 @@
 **	them into integers.
 */
 
-
 int	ft_atoi(const char *nbr)
 {
 	unsigned int	index;
