@@ -104,6 +104,16 @@ FILES += ft_ftoa
 FILES += ft_lftoa
 FILES += ft_strjoin_head
 FILES += ft_strjoin_tail
+FILES += ft_arg_filter
+FILES += ft_char_convert
+FILES += ft_printers
+FILES += ft_diouxf_convert
+FILES += ft_colouring
+FILES += ft_printf
+FILES += ft_str_convert
+FILES += ft_utils
+FILES += ft_bonus_func
+FILES += ft_printer_utils
 
 
 SRC 		= $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
