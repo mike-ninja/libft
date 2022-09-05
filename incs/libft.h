@@ -20,6 +20,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# define BUFF_SIZE 100
+# define FD_SIZE 4096
+
 /*
 ** structs
 */
@@ -119,5 +122,6 @@ char	*ft_ulltoa_base(unsigned long long value, int base);
 char	*strjoin_head(char *str, char *tail);
 char	*strjoin_tail(char *head, char *str);
 char	*ft_strsep(char **stringp, const char *delim);
+int		get_next_line(const int fd, char **line);
 
 #endif

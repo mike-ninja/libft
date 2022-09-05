@@ -114,6 +114,7 @@ FILES += ft_str_convert
 FILES += ft_utils
 FILES += ft_bonus_func
 FILES += ft_printer_utils
+FILES += get_next_line
 
 
 SRC 		= $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
