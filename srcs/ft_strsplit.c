@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 18:00:29 by mbarutel          #+#    #+#             */
-/*   Updated: 2021/12/13 14:08:11 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/09/14 10:06:09 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static char	*word_array(const char *str, char c)
 	return (NULL);
 }
 
-static int	word_count(const char *str, char c)
+static int	word_len(const char *str, int c)
 {
 	int	index;
 	int	words;
@@ -94,10 +94,10 @@ static char	**ft_splitter(char **ret, char const *s, char c, int len)
 
 char	**ft_strsplit(char const *s, char c)
 {
-	int		len;
+	int	len;
 	char	**ret;
 
-	len = word_count(s, c);
+	len = word_len(s, c);
 	ret = (char **)malloc(sizeof(char *) * (len + 1));
 	if (ret && s)
 	{
@@ -106,3 +106,4 @@ char	**ft_strsplit(char const *s, char c)
 	}
 	return (NULL);
 }
+

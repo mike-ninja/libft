@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:59:32 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/05/12 15:43:28 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/09/12 08:39:00 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 */
 typedef struct s_list
 {
-	void			*content;
-	size_t			content_size;
+	void		*content;
+	size_t		content_size;
 	struct s_list	*next;
 }				t_list;
 
@@ -50,6 +50,7 @@ int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
+int		ft_iswhitespace(int c);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -123,5 +124,6 @@ char	*strjoin_head(char *str, char *tail);
 char	*strjoin_tail(char *head, char *str);
 char	*ft_strsep(char **stringp, const char *delim);
 int		get_next_line(const int fd, char **line);
+char    *ft_strsep(char **stringp, const char *delim);
 
 #endif

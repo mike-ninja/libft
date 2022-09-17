@@ -6,7 +6,7 @@
 #    By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/19 14:58:30 by mbarutel          #+#    #+#              #
-#    Updated: 2022/09/04 15:23:58 by mbarutel         ###   ########.fr        #
+#    Updated: 2022/09/12 08:37:58 by mbarutel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ NAME 		= libft.a
 INC_DIR		= incs/
 SRC_DIR		= srcs/
 OBJ_DIR		= objs/
-CC			= gcc
-AR			= ar rcs
+CC		= gcc
+AR		= ar rcs
 INCLUDE		= -I$(INC_DIR)
 CFLAGS		= -Wall -Werror -Wextra
 
@@ -115,10 +115,12 @@ FILES += ft_utils
 FILES += ft_bonus_func
 FILES += ft_printer_utils
 FILES += get_next_line
+FILES += ft_strsep
+FILES += ft_iswhitespace
 
 
-SRC 		= $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
-OBJ 		= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
+SRC 	= $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
+OBJ 	= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
 
 #####
 
