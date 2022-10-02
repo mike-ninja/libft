@@ -58,6 +58,7 @@ FILES += ft_isdigit
 FILES += ft_isalnum
 FILES += ft_isascii
 FILES += ft_isprint
+FILES += ft_isspecial
 FILES += ft_toupper
 FILES += ft_tolower
 FILES += ft_memalloc
