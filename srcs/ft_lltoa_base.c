@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 14:09:23 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/09/04 16:04:55 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/14 10:49:07 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,7 @@ char	*ft_lltoa_base(long long value, int base)
 	len = if_neg(value, &tmp, base);
 	len += ft_deci_len(tmp, base);
 	catch_negative(&len, value, base, ret);
-	ret = (char *)malloc(len + 1);
-	if (!ret)
-		return (NULL);
+	ret = (char *)ft_memalloc(sizeof(char) * (len + 1));
 	ret[len] = '\0';
 	while (tmp)
 	{

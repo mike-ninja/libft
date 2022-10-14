@@ -77,7 +77,7 @@ char	*ft_itoa(int nb)
 	char	*ret;
 
 	len = ft_len((long)nb);
-	ret = (char *)malloc(sizeof(char) * (len + 1));
+	ret = (char *)ft_memalloc(sizeof(char) * (len + 1));
 	if (ret)
 	{
 		ft_int_to_char(ret, (long)nb, len);

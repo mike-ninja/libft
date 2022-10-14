@@ -21,13 +21,13 @@
 
 char	*ft_strnew(size_t size)
 {
-	char	*ptr;
+	char	*ret;
 
-	ptr = (char *)malloc(sizeof(char) * size + 1);
-	if (ptr)
+	ret = (char *)ft_memalloc(sizeof(char) * (size + 1));
+	if (ret)
 	{
-		ft_bzero(ptr, size + 1);
-		return (ptr);
+		ft_bzero(ret, size + 1);
+		return (ret);
 	}
 	return (NULL);
 }

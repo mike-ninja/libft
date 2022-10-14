@@ -30,7 +30,7 @@ static char	*word_array(const char *str, char c)
 		i = 0;
 		while (str[i] != c && str[i] != '\0')
 			i++;
-		ret = (char *)malloc(sizeof(char) * (i + 1));
+		ret = (char *)ft_memalloc(sizeof(char) * (i + 1));
 		if (ret)
 		{
 			i = 0;
@@ -99,6 +99,8 @@ char	**ft_strsplit(char const *s, char c)
 
 	len = word_len(s, c);
 	ret = (char **)malloc(sizeof(char *) * (len + 1));
+	if (!ret)
+		ft_exit_no_mem(1);
 	if (ret && s)
 	{
 		ret = ft_splitter(ret, s, c, len);

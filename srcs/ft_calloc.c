@@ -29,5 +29,7 @@ void	*ft_calloc(size_t count, size_t size)
 		ft_bzero(ret, (count * size));
 		return (ret);
 	}
+	else
+		ft_exit_no_mem(1);
 	return (NULL);
 }

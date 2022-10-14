@@ -48,7 +48,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (s1 && s2)
 	{
 		len = (ft_strlen(s1) + ft_strlen(s2));
-		ret = (char *)malloc(sizeof(char) * (len + 1));
+		ret = (char *)ft_memalloc(sizeof(char) * (len + 1));
 		if (ret)
 		{
 			ft_joiner(ret, s1, s2);

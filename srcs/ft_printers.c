@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 20:35:32 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/09/04 16:41:52 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/14 10:48:23 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,7 @@ char	*di_width_printer(t_flags *flags, char *str, t_attr *attr, char speci)
 			len--;
 		if ((flags->width - len) > 0)
 		{
-			attr->width = (char *)malloc((flags->width - len) + 1);
-			if (!attr->width)
-				return (NULL);
+			attr->width = (char *)ft_memalloc((flags->width - len) + 1);
 			attr->width[(flags->width - len)] = '\0';
 			if (flags->zero && (flags->precision == -1 || speci == 'f'))
 				ft_memset((void *)attr->width, '0', ((flags->width - len)));
@@ -75,9 +73,7 @@ char	*precision(char *str, int precision, int padd)
 	len = ft_strlen(str) + padd;
 	if (precision >= len)
 	{
-		ret = (char *)malloc(sizeof(char) * precision + 1);
-		if (!ret)
-			return (NULL);
+		ret = (char *)ft_memalloc(sizeof(char) * (precision + 1));
 		ret[precision--] = '\0';
 		while (precision >= 0)
 			sign = precision_util(ret, &precision, &len, str);

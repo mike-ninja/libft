@@ -29,7 +29,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 
 	if (s && *s)
 	{
-		ret = (char *)malloc(sizeof(char) * (len + 1));
+		ret = (char *)ft_memalloc(sizeof(char) * (len + 1));
 		if (ret)
 		{
 			i = 0;

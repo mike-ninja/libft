@@ -110,6 +110,7 @@ void	ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 /*
 ** extra
 */
+void	ft_exit_no_mem(int status);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 void	ft_del(void *content, size_t content_size);
 void	ft_lstaddback(t_list **alst, t_list *new);

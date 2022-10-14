@@ -29,7 +29,7 @@ char	*ft_strmap(char const *s, char (*f)(char))
 	{
 		i = 0;
 		str = (char *)s;
-		ptr = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
+		ptr = (char *)ft_memalloc(sizeof(char) * (ft_strlen(str) + 1));
 		if (!ptr)
 		{
 			ft_strdel(&ptr);

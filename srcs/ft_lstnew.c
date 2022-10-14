@@ -29,26 +29,24 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 	t_list	*new;
 
 	new = (t_list *)malloc(sizeof(t_list));
-	if (new)
+	if (!new)
+		ft_exit_no_mem(1);
+	if (content && content_size)
 	{
-		if (content && content_size)
+		new->content = ft_memalloc(content_size);
+		if (!new->content)
 		{
-			new->content = ft_memalloc(content_size);
-			if (!new->content)
-			{
-				ft_lstdelone(&new, ft_del);
-				return (NULL);
-			}
-			new->content = ft_memcpy(new->content, content, content_size);
-			new->content_size = content_size;
+			ft_lstdelone(&new, ft_del);
+			return (NULL);
 		}
-		else
-		{
-			new->content = NULL;
-			new->content_size = 0;
-		}
-		new->next = NULL;
-		return (new);
+		new->content = ft_memcpy(new->content, content, content_size);
+		new->content_size = content_size;
 	}
-	return (NULL);
+	else
+	{
+		new->content = NULL;
+		new->content_size = 0;
+	}
+	new->next = NULL;
+	return (new);
 }

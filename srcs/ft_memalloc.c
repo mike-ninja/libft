@@ -31,5 +31,7 @@ void	*ft_memalloc(size_t size)
 		ft_bzero(ptr, size);
 		return (ptr);
 	}
+	else
+		ft_exit_no_mem(1);
 	return (NULL);
 }

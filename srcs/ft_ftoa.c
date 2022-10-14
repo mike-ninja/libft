@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:44:54 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/09/04 16:04:36 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/14 10:49:41 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,7 @@ static char	*remain(double nbr, size_t precision, long *base_l)
 	nbr_tmp = nbr;
 	if (precision == 0)
 		return (precision_zero(nbr, base_l));
-	ret = (char *)malloc(precision + 1);
-	if (!ret)
-		return (NULL);
+	ret = (char *)ft_memalloc(precision + 1);
 	index = 0;
 	ret[precision] = '\0';
 	while (precision--)
@@ -106,7 +104,7 @@ char	*ft_ftoa(double nbr, size_t precision)
 		return (ft_strdup("nan"));
 	base = (long *)malloc(sizeof(long));
 	if (!base)
-		return (NULL);
+		ft_exit_no_mem(1);
 	if (1 / nbr < 0)
 	{
 		sign = ft_strdup("-");

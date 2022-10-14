@@ -124,6 +124,7 @@ FILES += cursor_movement
 FILES += ft_iswhitespace
 FILES += input_functions
 FILES += cursor_movement_utils
+FILES += ft_exit_no_mem
 
 
 SRC 	= $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
