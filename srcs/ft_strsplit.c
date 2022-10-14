@@ -94,7 +94,7 @@ static char	**ft_splitter(char **ret, char const *s, char c, int len)
 
 char	**ft_strsplit(char const *s, char c)
 {
-	int	len;
+	int		len;
 	char	**ret;
 
 	len = word_len(s, c);
@@ -106,4 +106,3 @@ char	**ft_strsplit(char const *s, char c)
 	}
 	return (NULL);
 }
-

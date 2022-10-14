@@ -19,8 +19,10 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "termcaps.h"
+# include "ft_printf.h"
 
-# define BUFF_SIZE 100
+# define BUFF_SIZE 2096
 # define FD_SIZE 4096
 
 /*
@@ -28,8 +30,8 @@
 */
 typedef struct s_list
 {
-	void		*content;
-	size_t		content_size;
+	void			*content;
+	size_t			content_size;
 	struct s_list	*next;
 }				t_list;
 
@@ -125,6 +127,6 @@ char	*strjoin_head(char *str, char *tail);
 char	*strjoin_tail(char *head, char *str);
 char	*ft_strsep(char **stringp, const char *delim);
 int		get_next_line(const int fd, char **line);
-char    *ft_strsep(char **stringp, const char *delim);
+char	*ft_strsep(char **stringp, const char *delim);
 
 #endif

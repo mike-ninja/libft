@@ -17,10 +17,10 @@ NAME 		= libft.a
 INC_DIR		= incs/
 SRC_DIR		= srcs/
 OBJ_DIR		= objs/
-CC		= gcc
-AR		= ar rcs
+CC			= gcc
+AR			= ar rcs
 INCLUDE		= -I$(INC_DIR)
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra -g -fsanitize=address
 
 # Colors
 
@@ -117,7 +117,13 @@ FILES += ft_bonus_func
 FILES += ft_printer_utils
 FILES += get_next_line
 FILES += ft_strsep
+FILES += ft_termcaps
+FILES += termcaps_utils
+FILES += shifting_bits
+FILES += cursor_movement
 FILES += ft_iswhitespace
+FILES += input_functions
+FILES += cursor_movement_utils
 
 
 SRC 	= $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
