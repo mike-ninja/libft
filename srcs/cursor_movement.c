@@ -6,11 +6,11 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 09:05:53 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/14 09:01:36 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/15 17:35:07 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "termcaps.h"
+#include "ft_termcaps.h"
 
 void	cursor_right(int *cursor)
 {

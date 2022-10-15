@@ -6,33 +6,24 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:52:45 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/14 09:08:44 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/15 17:35:03 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "termcaps.h"
+#include "ft_termcaps.h"
 
-static void	disable_raw_mode(void)
+static void	disable_raw_mode(struct termios *og_raw)
 {
-	tcsetattr(STDIN_FILENO, TCSANOW, &g_orig_termios);
+	tcsetattr(STDIN_FILENO, TCSANOW, og_raw);
 }
 
-static void	kill_process(int sig)
-{
-	if (sig == 3)
-	{
-		disable_raw_mode();
-		kill(getpid(), SIGINT);
-	}
-}
-
-static int	init_raw(void)
+static int	init_raw(struct termios *og_raw)
 {
 	struct termios	raw;
 
-	if (tcgetattr(STDIN_FILENO, &g_orig_termios) == -1)
+	if (tcgetattr(STDIN_FILENO, og_raw) == -1)
 		return (0);
-	raw = g_orig_termios;
+	raw = *og_raw;
 	raw.c_lflag &= ~(ICANON | ECHO | IEXTEN | ISIG);
 	raw.c_iflag &= ~(IXON | BRKINT);
 	raw.c_cc[VMIN] = 1;
@@ -52,8 +43,6 @@ static void	input_cycle(char *input, int *bytes, int *cur, int *ch)
 		*ch = get_input();
 		if (*ch == D_QUOTE || *ch == S_QUOTE)
 			quote_count(&quote, ch);
-		if (*ch == KILL)
-			kill_process(*ch);
 		else if (*ch == ENTER && !quote)
 			return ;
 		else if (*ch == CTRL_D && *cur < *bytes)
@@ -62,7 +51,7 @@ static void	input_cycle(char *input, int *bytes, int *cur, int *ch)
 			backspace(input, bytes, cur);
 		if (*ch == ESCAPE)
 			esc_parse(input, bytes, cur, ch);
-		if (isprint(*ch) || (*ch == ENTER && quote))
+		if (ft_isprint(*ch) || (*ch == ENTER && quote))
 		{
 			char_print(input, bytes, cur, *ch);
 			if (*ch == ENTER && quote)
@@ -73,15 +62,16 @@ static void	input_cycle(char *input, int *bytes, int *cur, int *ch)
 
 int	ft_termcaps(char *input)
 {
-	int		ch;
-	int		bytes;
-	int		cursor;
+	int				ch;
+	int				bytes;
+	int				cursor;
+	struct termios	og_raw;
 
 	ch = 0;
 	bytes = 0;
 	cursor = 0;
 	ft_memset(input, '\0', BUFF_SIZE);
-	if (!init_raw())
+	if (!init_raw(&og_raw))
 	{
 		ft_putstr_fd("error, raw mode\n", STDERR_FILENO);
 		exit(1);
@@ -89,7 +79,7 @@ int	ft_termcaps(char *input)
 	input_cycle(input, &bytes, &cursor, &ch);
 	if (ch == -1)
 		ft_putstr_fd("error, read\n", STDERR_FILENO);
-	disable_raw_mode();
+	disable_raw_mode(&og_raw);
 	write(1, "\n", 1);
 	return (0);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   shifting_bits.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrantil <mrantil@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 07:56:09 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/13 14:51:42 by mrantil          ###   ########.fr       */
+/*   Updated: 2022/10/15 17:34:55 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "termcaps.h"
+#include "ft_termcaps.h"
 
 void	insertion_shift(char *input, int *bytes, int cur)
 {

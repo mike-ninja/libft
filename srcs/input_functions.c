@@ -6,11 +6,11 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 09:23:01 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/14 08:38:02 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/15 17:34:59 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "termcaps.h"
+#include "ft_termcaps.h"
 
 void	delete(char *input, int *bytes, int *cur)
 {
@@ -37,9 +37,9 @@ void	backspace(char *input, int *bytes, int *cur)
 
 void	cursor_mv(int *bytes, int *cur, int c)
 {
-	if (c == LEFT && *cur)
+	if (c == K_LEFT && *cur)
 		cursor_left(cur);
-	if (c == RIGHT && (*cur < *bytes))
+	if (c == K_RIGHT && (*cur < *bytes))
 		cursor_right(cur);
 }
 

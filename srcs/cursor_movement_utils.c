@@ -6,11 +6,11 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 08:29:54 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/14 09:02:39 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/15 17:34:04 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "termcaps.h"
+#include "ft_termcaps.h"
 
 void	cursor_beginning(int *cur)
 {
@@ -56,9 +56,9 @@ void	esc_parse(char *input, int *bytes, int *cur, int *c)
 	{
 		c[0] = get_input();
 		if (*c == 'D')
-			*c = LEFT;
+			*c = K_LEFT;
 		if (*c == 'C')
-			*c = RIGHT;
+			*c = K_RIGHT;
 		if (*c == 'H' && *cur)
 			cursor_beginning(cur);
 		if (*c == 'F' && *cur < *bytes)
