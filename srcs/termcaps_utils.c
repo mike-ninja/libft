@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 07:52:49 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/17 12:07:06 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/17 12:07:48 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	term_cap(char *capability)
 	char		*buf;
 	char		*str;
 	char		*term;
-	
+
 	str = NULL;
 	buf = (char *)ft_memalloc(sizeof(*buf));
 	term = getenv("TERM");
