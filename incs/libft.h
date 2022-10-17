@@ -22,7 +22,7 @@
 # include "ft_termcaps.h"
 # include "ft_printf.h"
 
-# define BUFF_SIZE 2096
+# define BUFF_SIZE 4096
 # define FD_SIZE 4096
 
 /*
