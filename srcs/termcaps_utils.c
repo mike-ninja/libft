@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   termcaps_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 07:52:49 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/15 17:34:50 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:15:21 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,14 @@ int	get_input(void)
 
 void	print_trail(char *input, int cursor)
 {
-	ft_putstr("\033[s");
+	term_cap("sc");
 	ft_putstr(&input[cursor]);
-	ft_putstr("\033[H");
-	ft_putstr("\033[u");
+	term_cap("rc");
 }
 
 void	clear_trail(void)
 {
-	ft_putstr("\033[K");
+	term_cap("ce");
 }
 
 void	quote_count(int *quote, int *c)
@@ -40,4 +39,16 @@ void	quote_count(int *quote, int *c)
 		*quote = *c;
 	else if (*quote == *c)
 		*quote = 0;
+}
+
+void	term_cap(char *capability)
+{
+	char	*str;
+	char	buf[1096];
+
+	str = NULL;
+	ft_bzero(buf, 1096);
+	tgetent(buf, getenv("TERM"));
+	str = tgetstr(capability, NULL);
+	write(1, str, ft_strlen(str));
 }

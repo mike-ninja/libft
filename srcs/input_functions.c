@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 09:23:01 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/15 17:34:59 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/17 10:53:42 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	delete(char *input, int *bytes, int *cur)
 
 void	backspace(char *input, int *bytes, int *cur)
 {
-	cursor_left(NULL);
+	term_cap("le");
 	clear_trail();
 	if (*cur == *bytes)
 	{
@@ -38,9 +38,9 @@ void	backspace(char *input, int *bytes, int *cur)
 void	cursor_mv(int *bytes, int *cur, int c)
 {
 	if (c == K_LEFT && *cur)
-		cursor_left(cur);
+		cur_left(cur);
 	if (c == K_RIGHT && (*cur < *bytes))
-		cursor_right(cur);
+		cur_right(cur);
 }
 
 void	char_print(char *input, int *bytes, int *cur, int c)

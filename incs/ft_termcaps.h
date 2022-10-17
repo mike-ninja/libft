@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_termcaps.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 09:51:26 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/15 17:36:03 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:15:44 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 # define FT_TERMCAPS_H
 
 # include "libft.h"
+# include <term.h>
+# include <curses.h>
 # include <termios.h>
+# include <termcap.h>
 
 # define CTRL_D		0x0004
 # define D_QUOTE	0x0022
@@ -34,8 +37,8 @@
 int		ft_termcaps(char *input);
 
 /*		    Cursor Movement			*/
-void	cursor_left(int *cursor);
-void	cursor_right(int *cursor);
+void	cur_left(int *cursor);
+void	cur_right(int *cursor);
 void	alt_mv_left(int *cursor, char *input);
 void	alt_mv_right(int *cursor, char *input, int *bytes);
 void	cursor_beginning(int *cur);
@@ -45,6 +48,7 @@ void	cursor_end(int *cur, int *bytes);
 int		get_input(void);
 void	print_trail(char *input, int cursor);
 void	clear_trail(void);
+void	term_cap(char *capability);
 
 /*		      BITS Shifting			*/
 void	insertion_shift(char *input, int *bytes, int cur);

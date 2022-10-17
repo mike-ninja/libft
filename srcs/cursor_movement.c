@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   cursor_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 09:05:53 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/15 17:35:07 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:07:05 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_termcaps.h"
 
-void	cursor_right(int *cursor)
+void	cur_right(int *cursor)
 {
 	if (cursor)
 		cursor[0]++;
-	write(1, "\033[1C", 4);
+	term_cap("nd");
 }
 
-void	cursor_left(int *cursor)
+void	cur_left(int *cursor)
 {
 	if (cursor)
 		cursor[0]--;
-	write(1, "\033[1D", 4);
+	term_cap("le");
 }
 
 void	alt_mv_left(int *cursor, char *input)

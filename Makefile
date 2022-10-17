@@ -126,7 +126,6 @@ FILES += input_functions
 FILES += cursor_movement_utils
 FILES += ft_exit_no_mem
 
-
 SRC 	= $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 OBJ 	= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
 
@@ -135,7 +134,7 @@ OBJ 	= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@ar rcs $@ $^
+	@ar rcs $@ $^ 
 	@echo "$(BLUE)Generated Executable -> $@$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
