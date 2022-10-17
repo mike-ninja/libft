@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_termcaps.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:52:45 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/15 17:35:03 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:13:30 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ft_termcaps(char *input)
 	ch = 0;
 	bytes = 0;
 	cursor = 0;
-	ft_memset(input, '\0', BUFF_SIZE);
+	ft_bzero(input, BUFF_SIZE);
 	if (!init_raw(&og_raw))
 	{
 		ft_putstr_fd("error, raw mode\n", STDERR_FILENO);

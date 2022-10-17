@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 07:52:49 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/17 12:07:48 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:08:32 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,12 @@ void	quote_count(int *quote, int *c)
 
 void	term_cap(char *capability)
 {
-	char		*buf;
 	char		*str;
-	char		*term;
+	char		buf[1096];
 
 	str = NULL;
-	buf = (char *)ft_memalloc(sizeof(*buf));
-	term = getenv("TERM");
-	tgetent(buf, term);
+	ft_bzero(buf, 1096);
+	tgetent(buf, getenv("TERM"));
 	str = tgetstr(capability, NULL);
 	if (str)
 		write(1, str, ft_strlen(str));

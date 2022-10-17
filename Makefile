@@ -20,7 +20,7 @@ OBJ_DIR		= objs/
 CC			= gcc
 AR			= ar rcs
 INCLUDE		= -I$(INC_DIR)
-CFLAGS		= -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS		= -Wall -Werror -Wextra
 
 # Colors
 
@@ -134,7 +134,7 @@ OBJ 	= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@ar rcs $@ $^ 
+	@$(AR) $@ $^ 
 	@echo "$(BLUE)Generated Executable -> $@$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
