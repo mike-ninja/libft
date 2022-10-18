@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cursor_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 09:05:53 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/17 11:07:05 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/18 14:42:17 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,21 @@
 
 void	cur_right(int *cursor)
 {
-	if (cursor)
-		cursor[0]++;
+	cursor[0]++;
 	term_cap("nd");
 }
 
 void	cur_left(int *cursor)
 {
-	if (cursor)
-		cursor[0]--;
+	cursor[0]--;
 	term_cap("le");
 }
 
 void	alt_mv_left(int *cursor, char *input)
 {
-	int		b;
-	char	*tofree;
+	int	b;
 
 	b = 0;
-	tofree = NULL;
 	while (cursor[0] > 0 && ft_iswhitespace(input[cursor[0] - 1]))
 	{
 		b++;
@@ -46,9 +42,7 @@ void	alt_mv_left(int *cursor, char *input)
 	if (b)
 	{
 		write(1, "\033[", 2);
-		tofree = ft_itoa(b);
-		write(1, tofree, ft_strlen(tofree));
-		ft_strdel(&tofree);
+		ft_putnbr(b);
 		write(1, "D", 1);
 	}
 }
@@ -56,10 +50,8 @@ void	alt_mv_left(int *cursor, char *input)
 void	alt_mv_right(int *cursor, char *input, int *bytes)
 {
 	int		b;
-	char	*tofree;
 
 	b = 0;
-	tofree = NULL;
 	while (cursor[0] < *bytes && ft_iswhitespace(input[cursor[0]]))
 	{
 		b++;
@@ -73,9 +65,7 @@ void	alt_mv_right(int *cursor, char *input, int *bytes)
 	if (b)
 	{
 		write(1, "\033[", 2);
-		tofree = ft_itoa(b);
-		write(1, tofree, ft_strlen(tofree));
-		ft_strdel(&tofree);
+		ft_putnbr(b);
 		write(1, "C", 1);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_termcaps.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 09:51:26 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/17 11:15:44 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/18 14:14:55 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	deletion_shift(char *input, int *bytes, int *cur, int mode);
 /*		   Input Functions			*/
 void	cursor_mv(int *bytes, int *cur, int c);
 void	char_print(char *input, int *bytes, int *cur, int c);
-void	backspace(char *input, int *bytes, int *cur);
-void	delete(char *input, int *bytes, int *cur);
+void	backspace(char *input, int *bytes, int *cur, int *qoute);
+void	delete(char *input, int *bytes, int *cur, int *qoute);
 void	esc_parse(char *input, int *bytes, int *cur, int *c);
 void	quote_count(int *quote, int *c);
 void	init_var(int *c, int *bytes, int *cur, int *quote);

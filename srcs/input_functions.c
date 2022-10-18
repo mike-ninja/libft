@@ -3,26 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   input_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 09:23:01 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/17 10:53:42 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/18 14:15:12 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_termcaps.h"
 
-void	delete(char *input, int *bytes, int *cur)
+void	delete(char *input, int *bytes, int *cur, int *qoute)
 {
+	if (input[cur[0] - 1] == '\'' || input[cur[0] - 1] == '"')
+		qoute[0] = 0;
 	deletion_shift(input, bytes, cur, DEL);
 	clear_trail();
 	print_trail(input, *cur);
 }
 
-void	backspace(char *input, int *bytes, int *cur)
+void	backspace(char *input, int *bytes, int *cur, int *qoute)
 {
 	term_cap("le");
 	clear_trail();
+	if (input[cur[0] - 1] == '\'' || input[cur[0] - 1] == '"')
+		qoute[0] = 0;
 	if (*cur == *bytes)
 	{
 		bytes[0]--;

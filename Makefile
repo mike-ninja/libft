@@ -21,6 +21,7 @@ CC			= gcc
 AR			= ar rcs
 INCLUDE		= -I$(INC_DIR)
 CFLAGS		= -Wall -Werror -Wextra
+# FSANITIZE	= -g -fsanitize=address
 
 # Colors
 
@@ -138,7 +139,7 @@ $(NAME): $(OBJ)
 	@echo "$(BLUE)Generated Executable -> $@$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS) $(FSANITIZE) $(INCLUDE) -c $< -o $@
 	@echo "$(CYAN)Generated Object File -> $<$(DEF_COLOR)"
 
 $(OBJ_DIR):

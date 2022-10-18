@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 08:29:54 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/15 17:34:04 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/18 14:43:04 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,16 @@
 
 void	cursor_beginning(int *cur)
 {
-	char	*tofree;
-
-	tofree = NULL;
 	write(1, "\033[", 2);
-	tofree = ft_itoa(*cur);
-	write(1, tofree, ft_strlen(tofree));
-	ft_strdel(&tofree);
+	ft_putnbr(*cur);
 	write(1, "D", 1);
 	cur[0] = 0;
 }
 
 void	cursor_end(int *cur, int *bytes)
 {
-	char	*tofree;
-
-	tofree = NULL;
 	write(1, "\033[", 2);
-	tofree = ft_itoa(*bytes - *cur);
-	write(1, tofree, ft_strlen(tofree));
-	ft_strdel(&tofree);
+	ft_putnbr(*bytes - *cur);
 	write(1, "C", 1);
 	cur[0] = *bytes;
 }
@@ -55,6 +45,7 @@ void	esc_parse(char *input, int *bytes, int *cur, int *c)
 	if (*c == '[')
 	{
 		c[0] = get_input();
+		// ft_printf("%p\n", c);
 		if (*c == 'D')
 			*c = K_LEFT;
 		if (*c == 'C')

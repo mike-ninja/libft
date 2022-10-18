@@ -80,7 +80,7 @@ static char	**ft_splitter(char **ret, char const *s, char c, int len)
 			ret[i] = word_array(s, c);
 			if (!ret[i])
 			{
-				ft_memdel((void **)ret);
+				ft_memdel((void **)&ret);
 				return (NULL);
 			}
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_termcaps.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarutel <mbarutel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:52:45 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/17 13:13:30 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/18 14:34:31 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ static void	input_cycle(char *input, int *bytes, int *cur, int *ch)
 		else if (*ch == ENTER && !quote)
 			return ;
 		else if (*ch == CTRL_D && *cur < *bytes)
-			delete(input, bytes, cur);
+			delete(input, bytes, cur, &quote);
 		else if (*ch == BACKSPACE && *cur > 0)
-			backspace(input, bytes, cur);
+			backspace(input, bytes, cur, &quote);
 		if (*ch == ESCAPE)
 			esc_parse(input, bytes, cur, ch);
 		if (ft_isprint(*ch) || (*ch == ENTER && quote))
