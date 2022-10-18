@@ -6,27 +6,27 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 09:23:01 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/18 14:15:12 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:19:45 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_termcaps.h"
 
-void	delete(char *input, int *bytes, int *cur, int *qoute)
+void	delete(char *input, int *bytes, int *cur, t_quote *quo)
 {
-	if (input[cur[0] - 1] == '\'' || input[cur[0] - 1] == '"')
-		qoute[0] = 0;
+	if (input[cur[0] - 1] == quo->quote)
+		quo->quote_qty++;
 	deletion_shift(input, bytes, cur, DEL);
 	clear_trail();
 	print_trail(input, *cur);
 }
 
-void	backspace(char *input, int *bytes, int *cur, int *qoute)
+void	backspace(char *input, int *bytes, int *cur, t_quote *quo)
 {
 	term_cap("le");
 	clear_trail();
-	if (input[cur[0] - 1] == '\'' || input[cur[0] - 1] == '"')
-		qoute[0] = 0;
+	if (input[cur[0] - 1] == quo->quote)
+		quo->quote_qty++;
 	if (*cur == *bytes)
 	{
 		bytes[0]--;

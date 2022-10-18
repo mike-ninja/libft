@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 09:05:53 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/18 14:42:17 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:28:50 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	alt_mv_left(int *cursor, char *input)
 
 void	alt_mv_right(int *cursor, char *input, int *bytes)
 {
-	int		b;
+	int	b;
 
 	b = 0;
 	while (cursor[0] < *bytes && ft_iswhitespace(input[cursor[0]]))

@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 09:51:26 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/18 14:14:55 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:20:02 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define FT_TERMCAPS_H
 
 # include "libft.h"
-# include <term.h>
-# include <curses.h>
 # include <termios.h>
 # include <termcap.h>
 
@@ -33,6 +31,12 @@
 
 # define DEL		0x0000
 # define BCK		0x0001
+
+typedef struct quote
+{
+	char	quote;
+	int		quote_qty;
+}				t_quote;
 
 int		ft_termcaps(char *input);
 
@@ -57,10 +61,10 @@ void	deletion_shift(char *input, int *bytes, int *cur, int mode);
 /*		   Input Functions			*/
 void	cursor_mv(int *bytes, int *cur, int c);
 void	char_print(char *input, int *bytes, int *cur, int c);
-void	backspace(char *input, int *bytes, int *cur, int *qoute);
-void	delete(char *input, int *bytes, int *cur, int *qoute);
+void	backspace(char *input, int *bytes, int *cur, t_quote *quo);
+void	delete(char *input, int *bytes, int *cur, t_quote *quo);
 void	esc_parse(char *input, int *bytes, int *cur, int *c);
-void	quote_count(int *quote, int *c);
+void	quote_count(t_quote *quo, int *c);
 void	init_var(int *c, int *bytes, int *cur, int *quote);
 
 #endif

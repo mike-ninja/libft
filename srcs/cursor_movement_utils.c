@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 08:29:54 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/18 14:43:04 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:14:25 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	esc_parse(char *input, int *bytes, int *cur, int *c)
 	if (*c == '[')
 	{
 		c[0] = get_input();
-		// ft_printf("%p\n", c);
 		if (*c == 'D')
 			*c = K_LEFT;
 		if (*c == 'C')

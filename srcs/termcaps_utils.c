@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 07:52:49 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/18 14:32:04 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:12:52 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,24 @@ void	clear_trail(void)
 	term_cap("ce");
 }
 
-void	quote_count(int *quote, int *c)
+void	quote_count(t_quote *quo, int *c)
 {
-	if (!*quote)
-		*quote = *c;
-	else if (*quote == *c)
-		*quote = 0;
+	if (!quo->quote_qty)
+	{
+		quo->quote = *c;
+		quo->quote_qty++;
+	}
+	else if (quo->quote == *c)
+		quo->quote_qty--;
 }
 
 void	term_cap(char *capability)
 {
 	char		*str;
-	char		buf[1096];
+	char		*buf;
 
 	str = NULL;
-	ft_bzero(buf, 1096);
+	buf = NULL;
 	tgetent(buf, getenv("TERM"));
 	str = tgetstr(capability, NULL);
 	if (str)

@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:52:45 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/18 14:34:31 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:19:11 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,27 @@ static int	init_raw(struct termios *og_raw)
 
 static void	input_cycle(char *input, int *bytes, int *cur, int *ch)
 {
-	int		quote;
+	t_quote	quo[1];
 
-	quote = 0;
+	quo->quote = 0;
+	quo->quote_qty = 0;
 	while (*ch != -1)
 	{
 		*ch = get_input();
 		if (*ch == D_QUOTE || *ch == S_QUOTE)
-			quote_count(&quote, ch);
-		else if (*ch == ENTER && !quote)
+			quote_count(quo, ch);
+		else if (*ch == ENTER && !quo->quote_qty)
 			return ;
 		else if (*ch == CTRL_D && *cur < *bytes)
-			delete(input, bytes, cur, &quote);
+			delete(input, bytes, cur, quo);
 		else if (*ch == BACKSPACE && *cur > 0)
-			backspace(input, bytes, cur, &quote);
+			backspace(input, bytes, cur, quo);
 		if (*ch == ESCAPE)
 			esc_parse(input, bytes, cur, ch);
-		if (ft_isprint(*ch) || (*ch == ENTER && quote))
+		if (ft_isprint(*ch) || (*ch == ENTER && quo->quote_qty))
 		{
 			char_print(input, bytes, cur, *ch);
-			if (*ch == ENTER && quote)
+			if (*ch == ENTER && quo->quote_qty)
 				write(1, "> ", 2);
 		}
 	}
