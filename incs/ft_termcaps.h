@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 09:51:26 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/18 16:20:02 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/19 09:31:38 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,14 @@
 # define DEL		0x0000
 # define BCK		0x0001
 
-typedef struct quote
+typedef struct info
 {
+	int		ch;
+	int		bytes;
 	char	quote;
+	int		cursor;
 	int		quote_qty;
-}				t_quote;
+}				t_info;
 
 int		ft_termcaps(char *input);
 
@@ -60,11 +63,11 @@ void	deletion_shift(char *input, int *bytes, int *cur, int mode);
 
 /*		   Input Functions			*/
 void	cursor_mv(int *bytes, int *cur, int c);
-void	char_print(char *input, int *bytes, int *cur, int c);
-void	backspace(char *input, int *bytes, int *cur, t_quote *quo);
-void	delete(char *input, int *bytes, int *cur, t_quote *quo);
-void	esc_parse(char *input, int *bytes, int *cur, int *c);
-void	quote_count(t_quote *quo, int *c);
+void	char_print(char *input, t_info *info);
+void	backspace(char *input, t_info *info);
+void	delete(char *input, t_info *info);
+void	esc_parse(char *input, t_info *info);
+void	quote_count(t_info *info);
 void	init_var(int *c, int *bytes, int *cur, int *quote);
 
 #endif

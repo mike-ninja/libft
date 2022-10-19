@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 07:52:49 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/18 16:12:52 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/19 08:10:11 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ void	clear_trail(void)
 	term_cap("ce");
 }
 
-void	quote_count(t_quote *quo, int *c)
+void	quote_count(t_info *info)
 {
-	if (!quo->quote_qty)
+	if (!info->quote_qty)
 	{
-		quo->quote = *c;
-		quo->quote_qty++;
+		info->quote = info->ch;
+		info->quote_qty++;
 	}
-	else if (quo->quote == *c)
-		quo->quote_qty--;
+	else if (info->quote == info->ch)
+		info->quote_qty--;
 }
 
 void	term_cap(char *capability)

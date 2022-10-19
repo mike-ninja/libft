@@ -6,37 +6,37 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 09:23:01 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/18 16:19:45 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/19 09:29:48 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_termcaps.h"
 
-void	delete(char *input, int *bytes, int *cur, t_quote *quo)
+void	delete(char *input, t_info *info)
 {
-	if (input[cur[0] - 1] == quo->quote)
-		quo->quote_qty++;
-	deletion_shift(input, bytes, cur, DEL);
+	if (input[info->cursor - 1] == info->quote)
+		info->quote_qty++;
+	deletion_shift(input, &info->bytes, &info->cursor, DEL);
 	clear_trail();
-	print_trail(input, *cur);
+	print_trail(input, info->cursor);
 }
 
-void	backspace(char *input, int *bytes, int *cur, t_quote *quo)
+void	backspace(char *input, t_info *info)
 {
 	term_cap("le");
 	clear_trail();
-	if (input[cur[0] - 1] == quo->quote)
-		quo->quote_qty++;
-	if (*cur == *bytes)
+	if (input[info->cursor - 1] == info->quote)
+		info->quote_qty++;
+	if (info->cursor == info->bytes)
 	{
-		bytes[0]--;
-		cur[0]--;
-		input[*cur] = '\0';
+		info->bytes--;
+		info->cursor--;
+		input[info->cursor] = '\0';
 	}
 	else
-		deletion_shift(input, bytes, cur, BCK);
-	if (input[*cur])
-		print_trail(input, *cur);
+		deletion_shift(input, &info->bytes, &info->cursor, BCK);
+	if (input[info->cursor])
+		print_trail(input, info->cursor);
 }
 
 void	cursor_mv(int *bytes, int *cur, int c)
@@ -47,13 +47,13 @@ void	cursor_mv(int *bytes, int *cur, int c)
 		cur_right(cur);
 }
 
-void	char_print(char *input, int *bytes, int *cur, int c)
+void	char_print(char *input, t_info *info)
 {
-	write(1, &c, 1);
-	if (input[*cur])
-		insertion_shift(input, bytes, *cur);
-	input[cur[0]++] = c;
-	if (input[*cur])
-		print_trail(input, *cur);
-	bytes[0]++;
+	write(1, &info->ch, 1);
+	if (input[info->cursor])
+		insertion_shift(input, &info->bytes, info->cursor);
+	input[info->cursor++] = info->ch;
+	if (input[info->cursor])
+		print_trail(input, info->cursor);
+	info->bytes++;
 }

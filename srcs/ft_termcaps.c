@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:52:45 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/18 16:19:11 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/19 09:38:58 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,52 +33,55 @@ static int	init_raw(struct termios *og_raw)
 	return (1);
 }
 
-static void	input_cycle(char *input, int *bytes, int *cur, int *ch)
+static void	input_cycle(char *input, t_info *info)
 {
-	t_quote	quo[1];
-
-	quo->quote = 0;
-	quo->quote_qty = 0;
-	while (*ch != -1)
+	while (info->ch != -1)
 	{
-		*ch = get_input();
-		if (*ch == D_QUOTE || *ch == S_QUOTE)
-			quote_count(quo, ch);
-		else if (*ch == ENTER && !quo->quote_qty)
+		info->ch = get_input();
+		if (info->ch == D_QUOTE || info->ch == S_QUOTE)
+			quote_count(info);
+		else if (info->ch == ENTER && !info->quote_qty)
 			return ;
-		else if (*ch == CTRL_D && *cur < *bytes)
-			delete(input, bytes, cur, quo);
-		else if (*ch == BACKSPACE && *cur > 0)
-			backspace(input, bytes, cur, quo);
-		if (*ch == ESCAPE)
-			esc_parse(input, bytes, cur, ch);
-		if (ft_isprint(*ch) || (*ch == ENTER && quo->quote_qty))
+		else if (info->ch == CTRL_D && info->cursor < info->bytes)
+			delete(input, info);
+		else if (info->ch == BACKSPACE && info->cursor > 0)
+			backspace(input, info);
+		if (info->ch == ESCAPE)
+			esc_parse(input, info);
+		if (ft_isprint(info->ch) || (info->ch == ENTER && info->quote_qty))
 		{
-			char_print(input, bytes, cur, *ch);
-			if (*ch == ENTER && quo->quote_qty)
+			char_print(input, info);
+			if (info->ch == ENTER && info->quote_qty)
 				write(1, "> ", 2);
 		}
+		if (info->bytes == (BUFF_SIZE - 1))
+			break ;
 	}
+}
+
+static void	init_info(t_info *info)
+{
+	info->ch = 0;
+	info->bytes = 0;
+	info->quote = 0;
+	info->cursor = 0;
+	info->quote_qty = 0;
 }
 
 int	ft_termcaps(char *input)
 {
-	int				ch;
-	int				bytes;
-	int				cursor;
+	t_info			info[1];
 	struct termios	og_raw;
 
-	ch = 0;
-	bytes = 0;
-	cursor = 0;
+	init_info(info);
 	ft_bzero(input, BUFF_SIZE);
 	if (!init_raw(&og_raw))
 	{
 		ft_putstr_fd("error, raw mode\n", STDERR_FILENO);
 		exit(1);
 	}
-	input_cycle(input, &bytes, &cursor, &ch);
-	if (ch == -1)
+	input_cycle(input, info);
+	if (info->ch == -1)
 		ft_putstr_fd("error, read\n", STDERR_FILENO);
 	disable_raw_mode(&og_raw);
 	write(1, "\n", 1);
