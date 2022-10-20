@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 09:23:01 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/19 09:29:48 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/10/20 09:26:37 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,12 @@ void	backspace(char *input, t_info *info)
 	term_cap("le");
 	clear_trail();
 	if (input[info->cursor - 1] == info->quote)
-		info->quote_qty++;
+	{
+		if (!info->quote_qty)
+			info->quote_qty++;
+		else
+			info->quote_qty--;
+	}
 	if (info->cursor == info->bytes)
 	{
 		info->bytes--;
