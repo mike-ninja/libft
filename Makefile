@@ -10,137 +10,125 @@
 #                                                                              #
 # **************************************************************************** #
 
-# Variables
-NAME 		= libft.a
-INC_DIR		= incs/
-SRC_DIR		= srcs/
-OBJ_DIR		= objs/
-CC			= gcc
-AR			= ar rcs
-INCLUDE		= -I$(INC_DIR)
-CFLAGS		= -Wall -Werror -Wextra
-# FSANITIZE	= -g -fsanitize=address
+#COLORS
+SHELL 				:= /bin/bash
+GREEN 				= \033[32m
+GREEN_BACKGROUND 	= \033[42m
+WHITE_BACKGROUND 	= \033[47m
+VIOLET_BACKGROUND 	= \033[0;45m
+YELLOW_BACKGROUND 	= \033[0;43m
+WHITE 				= \033[37m
+YELLOW 				= \033[33m
+BLACK 				= \033[30m
+VIOLET				= \033[35m
+RESET 				= \033[0m
+RED 				= \033[31m
+CYAN 				= \033[36m
+BOLD 				= \033[1m
 
-# Colors
-DEF_COLOR = \033[0;39m
-RED = \033[1;91m
-BLUE = \033[1;94m
-MAGENTA = \033[1;95m
-CYAN = \033[1;96m
+#PRINTING TOOLS
+ERASE_LINE 			= \033[K
+UP 					= A
+DOWN 				= B
+RIGHT 				= C
+LEFT				= D
+MOVE				= \033[
+C_INVISIBLE 		= \033[?25l
+C_VISIBLE 			= \033[?25h
 
-# Sources
-FILES = ft_memset 
-FILES += ft_bzero
-FILES += ft_memcpy
-FILES += ft_memccpy
-FILES += ft_memmove
-FILES += ft_memchr
-FILES += ft_memcmp
-FILES += ft_strlen
-FILES += ft_strdup
-FILES += ft_strcpy
-FILES += ft_strncpy
-FILES += ft_strcat
-FILES += ft_strncat
-FILES += ft_strlcat
-FILES += ft_strchr
-FILES += ft_strrchr
-FILES += ft_strstr
-FILES += ft_strnstr
-FILES += ft_strcmp
-FILES += ft_strncmp
-FILES += ft_atoi
-FILES += ft_isalpha
-FILES += ft_isdigit
-FILES += ft_isalnum
-FILES += ft_isascii
-FILES += ft_isprint
-FILES += ft_isspecial
-FILES += ft_toupper
-FILES += ft_tolower
-FILES += ft_memalloc
-FILES += ft_memdel
-FILES += ft_strnew
-FILES += ft_strdel
-FILES += ft_strclr
-FILES += ft_striter
-FILES += ft_striteri
-FILES += ft_strmap
-FILES += ft_strmapi
-FILES += ft_strequ
-FILES += ft_strnequ
-FILES += ft_strsub
-FILES += ft_strjoin
-FILES += ft_strtrim
-FILES += ft_strsplit
-FILES += ft_itoa
-FILES += ft_putchar
-FILES += ft_putstr
-FILES += ft_putendl
-FILES += ft_putnbr
-FILES += ft_putchar_fd
-FILES += ft_putstr_fd
-FILES += ft_putendl_fd
-FILES += ft_putnbr_fd
-FILES += ft_lstnew
-FILES += ft_lstdelone
-FILES += ft_lstdel
-FILES += ft_lstadd
-FILES += ft_lstaddback
-FILES += ft_lstiter
-FILES += ft_lstmap
-FILES += ft_del
-FILES += ft_calloc
-FILES += ft_strlcpy
-FILES += ft_lstlast
-FILES += ft_lstsize
-FILES += ft_itoa_base
-FILES += ft_ltoa_base
-FILES += ft_lltoa_base
-FILES += ft_ulltoa_base
-FILES += ft_ftoa
-FILES += ft_lftoa
-FILES += ft_strjoin_head
-FILES += ft_strjoin_tail
-FILES += ft_arg_filter
-FILES += ft_char_convert
-FILES += ft_printers
-FILES += ft_diouxf_convert
-FILES += ft_colouring
-FILES += ft_printf
-FILES += ft_str_convert
-FILES += ft_utils
-FILES += ft_bonus_func
-FILES += ft_printer_utils
-FILES += get_next_line
-FILES += ft_strsep
-FILES += ft_iswhitespace
-FILES += ft_exit_no_mem
+#FORBID KEYBOARD INTERACT
+$(shell stty -echo)
 
-SRC 	= $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
-OBJ 	= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
+CC					=	gcc
+NAME				=	libft.a
+MAKEFLAGS			+=	--no-print-directory
+CFLAGS				=	-Wall -Wextra -Werror -g -O3 -I$(INC_DIR)
+TERMCAPS			=	-ltermcap
+
+_SRC_LIBFT		= ft_memset.c ft_atoi.c ft_bzero.c ft_memchr.c ft_memcpy.c ft_memcmp.c ft_strlen.c ft_strdup.c \
+				ft_strcpy.c ft_strcat.c ft_strchr.c ft_strstr.c ft_strcmp.c ft_memccpy.c ft_memmove.c ft_strncpy.c \
+				ft_strncat.c ft_strlcat.c ft_strrchr.c ft_strnstr.c ft_strncmp.c ft_isalpha.c ft_isdigit.c ft_isalnum.c \
+				ft_isascii.c ft_isprint.c ft_isspecial.c ft_toupper.c ft_tolower.c ft_memalloc.c ft_memdel.c ft_strnew.c \
+				ft_strdel.c ft_strclr.c ft_striter.c ft_striteri.c ft_strmap.c ft_strmapi.c ft_strequ.c ft_strnequ.c ft_strsub.c \
+				ft_strjoin.c ft_strtrim.c ft_strsplit.c ft_ftoa.c ft_lftoa.c ft_strsep.c ft_itoa.c ft_putstr.c ft_putnbr.c ft_lstnew.c \
+				ft_lstdel.c ft_lstadd.c ft_lstmap.c ft_calloc.c ft_putchar.c ft_putendl.c ft_lstiter.c ft_strlcpy.c ft_lstlast.c ft_lstsize.c \
+				ft_itoa_base.c ft_ltoa_base.c ft_lstdelone.c ft_putnbr_fd.c ft_putstr_fd.c get_next_line.c ft_putchar_fd.c ft_putendl_fd.c ft_lstaddback.c \
+				ft_lltoa_base.c ft_ulltoa_base.c ft_exit_no_mem.c ft_strjoin_head.c ft_strjoin_tail.c ft_iswhitespace.c ft_del.c
+
+_SRC_PRINTF		= ft_printf.c ft_utils.c ft_printers.c ft_colouring.c ft_bonus_func.c \
+				ft_arg_filter.c ft_str_convert.c ft_char_convert.c ft_printer_utils.c ft_diouxf_convert.c
+
+DIR_LIBFT		= libft/
+DIR_PRINTF		= ft_printf/
+
+_SRC			= $(_SRC_LIBFT) $(_SRC_PRINTF) $(_SRC_VEC)
+SOURCE_COUNT 	= $(words $(_SRC))
+
+OBJ_FILES		= $(_SRC:.c=.o)
+
+DIR_OBJS		= objects/
+OBJS			= $(patsubst %, $(DIR_OBJS)%, $(_SRC:.c=.o))
+
+INC_DIR			= includes/
+_INC			= libft.h ft_printf.h
+INC				= $(addprefix $(INC_DIR), $(_INC))
+HEADERS			= -I$(INC_DIR)
+
+ASSERT_OBJECT	= && printf "$(ERASE_LINE)" && printf "$@ $(GREEN)$(BOLD) ✔$(RESET)" || (printf "$@ $(RED)$(BOLD)✘$(RESET)\n" | @printf "$(C_VISIBLE)" && exit 1)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@$(AR) $@ $^ 
-	@echo "$(BLUE)Generated Executable -> $@$(DEF_COLOR)"
+$(NAME): $(DIR_OBJS) $(OBJS)
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
+	@printf "Compiled $(BOLD)$(GREEN)$(NAME)$(RESET)!\n\n"
+	@stty echo
+	@printf "$(C_VISIBLE)"
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(FSANITIZE) $(INCLUDE) -c $< -o $@
-	@echo "$(CYAN)Generated Object File -> $<$(DEF_COLOR)"
+$(DIR_OBJS):
+	@stty -echo
+	@mkdir -p $(DIR_OBJS)
+	@printf "$(GREEN)_________________________________________________________________\n$(RESET)"
+	@printf "$(NAME): $(GREEN)$(DIR_OBJS) directory was created.$(RESET)\n\n\n"
 
-$(OBJ_DIR):
-	@mkdir -p $@
+$(DIR_OBJS)%.o: $(DIR_LIBFT)%.c
+	@printf "$(C_INVISIBLE)"
+	@printf "$(MOVE)2$(UP)"
+	@$(CC) $(CFLAGS) $(HEADERS) -o $@ -c $< $(ASSERT_OBJECT)
+	@make pbar_libft
+
+$(DIR_OBJS)%.o: $(DIR_PRINTF)%.c
+	@printf "$(C_INVISIBLE)"
+	@printf "$(MOVE)2$(UP)"
+	@$(CC) $(CFLAGS) $(HEADERS) -o $@ -c $< $(ASSERT_OBJECT)
+	@make pbar_libft
+
+$(DIR_OBJS)%.o: $(DIR_VEC)%.c
+	@printf "$(C_INVISIBLE)"
+	@printf "$(MOVE)2$(UP)"
+	@$(CC) $(CFLAGS) $(HEADERS) -o $@ -c $< $(ASSERT_OBJECT)
+	@make pbar_libft
 
 clean:
-	@rm -rf $(OBJ_DIR)
-	@echo "$(RED)Deleted Objects Directory -> $(NAME)$(DEF_COLOR)"
+	@if [ -d $(DIR_OBJS) ]; then rm -rf $(DIR_OBJS); printf "libft:		$(RED)$(DIR_OBJS) was deleted$(RESET)\n"; fi
 
 fclean: clean
-	@rm -f $(NAME)
-	@echo "$(MAGENTA)Deleted Library -> $(NAME)$(DEF_COLOR)"
-	
-re: fclean $(OBJ_DIR) all
+	@if [ -f $(NAME) ]; then rm -f $(NAME); printf "$(NAME):	$(RED)library was deleted$(RESET)\n"; fi
+
+re: fclean all
+
+pbar_libft:
+	$(eval LOADED_COUNT = $(words $(wildcard $(DIR_OBJS)*.o)))
+	@printf "\r$(MOVE)76$(RIGHT)Files compiled [$(BOLD)$(GREEN)$(LOADED_COUNT)$(RESET) / $(BOLD)$(GREEN)$(SOURCE_COUNT)$(RESET)]\n"
+	@for ((i = 1; i <= $(LOADED_COUNT) * 100 / $(SOURCE_COUNT); i++)); do\
+		printf "$(GREEN_BACKGROUND) $(RESET)" ;\
+	done ;
+	@for ((i = 1; i <= 100 - ($(LOADED_COUNT) * 100 / $(SOURCE_COUNT)); i++)); do\
+		printf "$(WHITE_BACKGROUND) $(RESET)" ;\
+	done ;
+	@printf "$(GREEN_BACKGROUND)$(BOLD)$(WHITE)$(MOVE)55$(LEFT)[$$(($(LOADED_COUNT) * 100 / $(SOURCE_COUNT))).$$(($(LOADED_COUNT) * 1000 / $(SOURCE_COUNT) % 10))%%]$(MOVE)54$(RIGHT)$(RESET)\n"
 
 .PHONY: all clean fclean re
+
+#ALLOW KEYBOARD INTERACT
+$(shell stty echo)
