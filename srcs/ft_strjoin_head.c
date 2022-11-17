@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 14:40:55 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/09/04 16:06:42 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/11/17 08:28:04 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ char	*strjoin_head(char *str, char *tail)
 
 	tmp = str;
 	str = ft_strjoin(str, tail);
-	free(tmp);
+	ft_strdel(&tmp);
 	return (str);
 }

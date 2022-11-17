@@ -6,22 +6,11 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 10:24:31 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/09/12 08:37:03 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/11/17 08:29:14 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*
-**	ft_strsep:
-**	  The strsep() function locates, in the string referenced by *stringp, the 
-**   first occurrence of any character in the string delim (or the
-**  terminating ‘\0’ character) and replaces it with a ‘\0’.  The location of 
-**  the next character after the delimiter character (or NULL, if the
-**  end of the string was reached) is stored in *stringp.  The original value of 
-**  *stringp is returned.
-**  string pointed to by s.
-*/
 
 static int	ft_charcmp(const char c, const char *delim)
 {

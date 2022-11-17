@@ -6,16 +6,12 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 12:32:26 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/10/14 10:34:21 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/11/17 08:26:18 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-**	ft_char_val:
-**	: Fetches the character value from the int
-*/
 static char	ft_char_val(unsigned int val)
 {
 	char	ret;
@@ -27,10 +23,6 @@ static char	ft_char_val(unsigned int val)
 	return (ret);
 }
 
-/*
-**	ft_deci_len:
-**	: Calculates the amount of digits based on the base. Kind of like ft_strlen
-*/
 static int	ft_deci_len(unsigned int val, int base)
 {
 	int	len;
@@ -58,10 +50,15 @@ static void	catch_negative(int *len, int val, int base, char *ret)
 			ret[0] = '-';
 }		
 
-/*
-**	ft_itoa_base:
-**	: Takes in a value and converts it to string based on base.
-*/
+/**
+ * It converts an integer to a string in a given base
+ * 
+ * @param value the number to be converted
+ * @param base the base of the number
+ * 
+ * @return A string of the value in the base given.
+ */
+
 char	*ft_itoa_base(int value, int base)
 {
 	int				len;

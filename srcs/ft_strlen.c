@@ -12,12 +12,6 @@
 
 #include "libft.h"
 
-/*
-**	ft_strlen:
-**	: Returns the number of characters that precede the 
-**	 terminating NUL character
-*/
-
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;

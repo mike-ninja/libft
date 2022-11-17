@@ -12,12 +12,6 @@
 
 #include "libft.h"
 
-/*
-**	ft_strstr:
-**	: Locates the first occurrence of the null-terminated
-**   string 'needle' in the null-terminated string 'haystack'.
-*/
-
 char	*ft_strstr(const char *haystack, const char *needle)
 {
 	int	i;

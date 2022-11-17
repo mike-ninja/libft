@@ -10,12 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-**	ft_tolower:
-**	: Converts an uppercase alphabetical character into an lowercase
-**   character.
-*/
-
 int	ft_tolower(int c)
 {
 	if (c >= 65 && c <= 90)

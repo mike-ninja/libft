@@ -12,15 +12,6 @@
 
 #include "libft.h"
 
-/*
-**	ft_strtrim:
-**	: Allocates (with malloc(3)) and returns a copy of the str given as
-**   argument without whitespaces at the beginning or at the end of the str.
-**	: If s has no whitespaces at the beginning or at the end, the function
-**   returns a copy of s.
-**	: If the allocation fails the function returns NULL.
-*/
-
 static int	ft_is_whitespace(char c)
 {
 	if (c == ' ' || c == '\n' || c == '\t')

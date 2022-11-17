@@ -12,13 +12,6 @@
 
 #include "libft.h"
 
-/*
-**	ft_strjoin:
-**	: Allocates (with malloc(3)) and returns a “fresh” string ending 
-**   with ’\0’, being the result of the concatenation of s1 and s2.
-**	: If the allocation fails the function returns NULL.
-*/
-
 static void	ft_joiner(char *ret, char const *s1, char const *s2)
 {
 	int		i;

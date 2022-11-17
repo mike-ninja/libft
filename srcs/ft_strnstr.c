@@ -12,14 +12,6 @@
 
 #include "libft.h"
 
-/*
-**	ft_strnstr:
-**	: Locates the first occurrence of the
-**   null-terminated string needle in the string haystack, where not more
-**   than len characters are searched.
-**	: Characters that appear after a `\0' character are not searched.
-*/
-
 static size_t	confirm_match(const char *haystack,
 	const char *needle, size_t limit, size_t len)
 {

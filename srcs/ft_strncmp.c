@@ -12,13 +12,6 @@
 
 #include "libft.h"
 
-/*
-**	ft_strncmp:
-**	: Lexicographically compare the null-terminated strings s1 and s2 up to
-**   no more than n characters.
-**	: characters that appear after a `\0' character are not compared.
-*/
-
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	int		ret;

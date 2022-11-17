@@ -12,12 +12,6 @@
 
 #include "libft.h"
 
-/*
-**	ft_strncat:
-**	: Appends not more than n characters from s2, and then adds a
-**   terminating `\0'.
-*/
-
 char	*ft_strncat(char *dst, const char *src, size_t n)
 {
 	int		i;

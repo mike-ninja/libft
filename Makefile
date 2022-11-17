@@ -11,9 +11,7 @@
 # **************************************************************************** #
 
 # Variables
-
 NAME 		= libft.a
-
 INC_DIR		= incs/
 SRC_DIR		= srcs/
 OBJ_DIR		= objs/
@@ -24,7 +22,6 @@ CFLAGS		= -Wall -Werror -Wextra
 # FSANITIZE	= -g -fsanitize=address
 
 # Colors
-
 DEF_COLOR = \033[0;39m
 RED = \033[1;91m
 BLUE = \033[1;94m
@@ -32,7 +29,6 @@ MAGENTA = \033[1;95m
 CYAN = \033[1;96m
 
 # Sources
-
 FILES = ft_memset 
 FILES += ft_bzero
 FILES += ft_memcpy
@@ -118,19 +114,11 @@ FILES += ft_bonus_func
 FILES += ft_printer_utils
 FILES += get_next_line
 FILES += ft_strsep
-FILES += ft_termcaps
-FILES += termcaps_utils
-FILES += shifting_bits
-FILES += cursor_movement
 FILES += ft_iswhitespace
-FILES += input_functions
-FILES += cursor_movement_utils
 FILES += ft_exit_no_mem
 
 SRC 	= $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 OBJ 	= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
-
-#####
 
 all: $(NAME)
 

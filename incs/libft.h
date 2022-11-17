@@ -19,7 +19,6 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "ft_termcaps.h"
 # include "ft_printf.h"
 
 # define BUFF_SIZE 4096
