@@ -19,7 +19,6 @@
  * 
  * @return A pointer to the first occurrence of the character c in the string.
  */
-
 char	*ft_strchr(const char *str, int c)
 {
 	while (*str != '\0')
