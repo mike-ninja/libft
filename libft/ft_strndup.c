@@ -6,7 +6,7 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:26:10 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/11/21 17:26:15 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/11/23 15:15:43 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@
 
 #include "libft.h"
 
+/**
+ * It allocates a new string, copies the first n characters of str into it, and
+ * returns a pointer to it.
+ * 
+ * @param str The string to be copied.
+ * @param n the number of characters to copy
+ * 
+ * @return A pointer to a new string.
+ */
 char	*ft_strndup(char *str, size_t n)
 {
 	char	*res;
