@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iswhitespace.c                                  :+:      :+:    :+:   */
+/*   ft_arrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/17 10:57:33 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/11/17 17:51:12 by mbarutel         ###   ########.fr       */
+/*   Created: 2022/11/22 16:52:56 by mbarutel          #+#    #+#             */
+/*   Updated: 2022/11/22 19:42:09 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 /**
- * The function ft_iswhitespace() returns 1 if the character c is a whitespace
- * character, and 0 otherwise
+ * This function returns the length of an array of strings
  * 
- * @param c The character to be checked.
+ * @param array The array to get the length of.
  * 
- * @return the number of words in the string.
+ * @return The length of the array.
  */
-int	ft_iswhitespace(int c)
+size_t	ft_arrlen(char **array)
 {
-	if (c >= 9 && c <= 13)
-		return (1);
-	if (c == 32)
-		return (1);
-	return (0);
+	size_t	len;
+
+	len = 0;
+	if (array)
+	{
+		while (array[len])
+			len++;
+	}
+	return (len);
 }

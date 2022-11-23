@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vec_free.c                                      :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/18 16:50:37 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/11/23 13:32:50 by mbarutel         ###   ########.fr       */
+/*   Created: 2022/09/17 10:57:33 by mbarutel          #+#    #+#             */
+/*   Updated: 2022/11/23 13:21:46 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vec.h"
-
 /**
- * It frees the memory allocated to the vector.
+ * The function ft_isspace() returns 1 if the character c is a whitespace
+ * character, and 0 otherwise
  * 
- * @param src The vector to free.
+ * @param c The character to be checked.
  * 
- * @return A pointer to the new vector.
+ * @return the number of words in the string.
  */
-void	ft_vec_free(t_vec *src)
+int	ft_isspace(int c)
 {
-	if (!src || src->alloc_size == 0)
-		return ;
-	ft_memdel((void *)&src->memory);
-	src->elem_size = 0;
-	src->alloc_size = 0;
-	src->len = 0;
+	if (c >= 9 && c <= 13)
+		return (1);
+	if (c == 32)
+		return (1);
+	return (0);
 }

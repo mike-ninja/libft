@@ -6,12 +6,12 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:46:48 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/11/18 17:07:53 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/11/23 13:31:24 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VEC_H
-# define VEC_H
+#ifndef FT_VEC_H
+# define FT_VEC_H
 
 # include "libft.h"
 

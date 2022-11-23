@@ -6,9 +6,11 @@
 /*   By: mbarutel <mbarutel@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:05:05 by mbarutel          #+#    #+#             */
-/*   Updated: 2022/11/17 17:20:47 by mbarutel         ###   ########.fr       */
+/*   Updated: 2022/11/23 13:23:25 by mbarutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 /**
  * It returns 1 if the character is a special character, and 0 if it isn't
@@ -20,11 +22,7 @@
 
 int	ft_isspecial(int c)
 {
-	if (c >= 58 && c <= 64)
-		return (1);
-	if (c >= 91 && c <= 96)
-		return (1);
-	if (c >= 123 && c <= 126)
+	if (!ft_isalnum(c) && !ft_isspace(c) && !ft_isdigit(c))
 		return (1);
 	return (0);
 }

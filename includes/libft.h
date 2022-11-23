@@ -21,7 +21,8 @@
 # include <unistd.h>
 # include "ft_printf.h"
 
-# define BUFF_SIZE 4096
+# define MAX_BUFF_SIZE 4096
+# define BUFF_SIZE 2048
 # define FD_SIZE 4096
 
 /*
@@ -51,7 +52,7 @@ int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
-int		ft_iswhitespace(int c);
+int		ft_isspace(int c);
 int		ft_isspecial(int c);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strcmp(const char *s1, const char *s2);
@@ -128,5 +129,8 @@ char	*ft_strsep(char **stringp, const char *delim);
 int		get_next_line(const int fd, char **line);
 char	*ft_strsep(char **stringp, const char *delim);
 void	ft_del(void *content, size_t content_size);
+char	*ft_strndup(char *str, size_t n);
+size_t	ft_arrlen(char **array);
+char	*ft_skip_space(char *str);
 
 #endif
