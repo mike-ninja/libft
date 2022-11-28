@@ -132,5 +132,6 @@ void	ft_del(void *content, size_t content_size);
 char	*ft_strndup(char *str, size_t n);
 size_t	ft_arrlen(char **array);
 char	*ft_skip_space(char *str);
+void	ft_arrclean(char **array);
 
 #endif
