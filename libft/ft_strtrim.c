@@ -12,49 +12,24 @@
 
 #include "libft.h"
 
-static int	ft_is_whitespace(char c)
-{
-	if (c == ' ' || c == '\n' || c == '\t')
-		return (1);
-	return (0);
-}
-
-static int	ft_is_char(char const *s)
-{
-	while (*s)
-	{
-		if (!(ft_is_whitespace(s[0])))
-			return (1);
-		s++;
-	}
-	return (0);
-}
-
 static size_t	ft_start(char const *str)
 {
 	size_t	i;
 
 	i = 0;
-	while (ft_is_whitespace(str[i]))
+	while (str[i] && ft_isspace(str[i]))
 		i++;
 	return (i);
 }
 
 static size_t	ft_end(char const *str)
 {
-	size_t	rev_i;
 	size_t	end;
 
-	rev_i = ft_strlen(str) - 1;
-	end = 0;
-	while (ft_is_whitespace(str[rev_i]))
-		rev_i--;
-	if (!(ft_is_whitespace(str[rev_i])))
-		end = rev_i;
-	if (end)
-		return (end);
-	else
-		return (0);
+	end = ft_strlen(str);
+	while (&str[end] > str && ft_isspace(str[end]))
+		end--;
+	return (end);
 }
 
 /**
@@ -65,26 +40,14 @@ static size_t	ft_end(char const *str)
  */
 char	*ft_strtrim(char const *str)
 {
-	size_t		len;
-	char		*ret;
+	size_t	start;
+	size_t	end;
 
 	if (str)
 	{
-		if (!(ft_is_char(str)))
-		{
-			ret = ft_strnew(1);
-			return (ret);
-		}
-		else
-		{
-			len = ft_end(str) - ft_start(str) + 1;
-			ret = ft_strnew(len);
-			if (ret)
-			{
-				ret = ft_strsub(str, ft_start(str), len);
-				return (ret);
-			}
-		}
+		start = ft_start(str);
+		end = ft_end(str);
+		return (ft_strsub(str, start, end - start));
 	}
 	return (NULL);
 }
