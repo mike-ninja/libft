@@ -98,9 +98,7 @@ char	**ft_strsplit(char const *s, char c)
 	char	**ret;
 
 	len = word_len(s, c);
-	ret = (char **)malloc(sizeof(char *) * (len + 1));
-	if (!ret)
-		ft_exit_no_mem(1);
+	ret = (char **)ft_memalloc(sizeof(char *) * (len + 1));
 	if (ret && s)
 	{
 		ret = ft_splitter(ret, s, c, len);

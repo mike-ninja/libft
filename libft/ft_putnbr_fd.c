@@ -17,7 +17,7 @@
  * writes the integer to the file descriptor
  * 
  * @param n the number to be printed
- * @param fd file descriptor
+ * @param fd file descriptoir
  */
 void	ft_putnbr_fd(int n, int fd)
 {
