@@ -1,5 +1,5 @@
 # libft
-make : Creat Library
+make : Create Library
 
 make clean : Delete Object Files
 
