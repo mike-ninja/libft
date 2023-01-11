@@ -26,7 +26,7 @@ static size_t	ft_end(char const *str)
 {
 	size_t	end;
 
-	end = ft_strlen(str);
+	end = ft_strlen(str) - 1;
 	while (&str[end] > str && ft_isspace(str[end]))
 		end--;
 	return (end);
@@ -46,8 +46,9 @@ char	*ft_strtrim(char const *str)
 	if (str)
 	{
 		start = ft_start(str);
-		end = ft_end(str);
-		return (ft_strsub(str, start, end - start));
+		end = ft_end(str) + 1;
+		if (start < end)
+			return (ft_strsub(str, start, end - start));
 	}
 	return (NULL);
 }
