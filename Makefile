@@ -59,8 +59,6 @@ _SRC_LIBFT		= ft_memset.c ft_atoi.c ft_bzero.c ft_memchr.c ft_memcpy.c ft_memcmp
 _SRC_PRINTF		= ft_printf.c ft_utils.c ft_printers.c ft_colouring.c ft_bonus_func.c \
 				ft_arg_filter.c ft_str_convert.c ft_char_convert.c ft_printer_utils.c ft_diouxf_convert.c
 
-_SRC_VEC	=	ft_vec_new.c ft_vec_free.c ft_vec_from.c ft_vec_resize.c ft_vec_get.c ft_vec_push.c ft_vec_sort.c ft_vec_iter.c
-
 DIR_LIBFT		= libft/
 DIR_PRINTF		= ft_printf/
 DIR_VEC			= ft_vec/
